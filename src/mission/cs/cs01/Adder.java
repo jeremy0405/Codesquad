@@ -28,25 +28,4 @@ public class Adder {
 		return answer;
 	}
 
-	public static void main(String[] args) {
-		Adder adder = new Adder();
-		System.out.println(adder.halfadder(true, true)[0] + " " + adder.halfadder(true, true)[1]);
-		System.out.println(adder.halfadder(false, true)[0] + " " + adder.halfadder(false, true)[1]);
-		System.out.println(adder.halfadder(false, false)[0] + " " + adder.halfadder(false, false)[1]);
-
-		System.out.println("");
-		System.out.println(adder.fulladder(true, true, true)[0] + " " + adder.fulladder(true, true, true)[1]);
-		System.out.println(adder.fulladder(true, false, true)[0] + " " + adder.fulladder(true, false, true)[1]);
-		System.out.println(adder.fulladder(false, false, true)[0] + " " + adder.fulladder(false, false, true)[1]);
-
-//		true false
-//		false true
-//		false false
-//
-//		true true
-//		ture false
-//		false true
-
-	}
-
 }
