@@ -39,4 +39,27 @@ class AdderTest {
 		Assertions.assertEquals(adder.fulladder(false, false, true)[1], true);
 
 	}
+
+	@Test
+	@DisplayName("8비트덧셈기테스트")
+	void byteadder() {
+
+		boolean[] byteA = {true, true, false, true, true, false, true, false};
+		boolean[] byteB = {true, false, true, true, false, false, true, true};
+
+		boolean[] answer = adder.byteadder(byteA, byteB);
+
+		StringBuilder answerToInteger = new StringBuilder();
+
+		for (boolean b : answer) {
+			if(b) {
+				answerToInteger.append("1");
+			} else {
+				answerToInteger.append("0");
+			}
+		}
+
+		Assertions.assertEquals(answerToInteger.toString(), "000101001");
+
+	}
 }
