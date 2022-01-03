@@ -35,4 +35,45 @@ public class Convertor {
 		return answer;
 	}
 
+	public String dec2hex(int decimal) {
+		boolean[] bin = dec2bin(decimal);
+		String answer = "";
+
+		boolean[] tmp;
+		for (int i = 0; i < bin.length; i += 4) {
+			if(i + 1 == bin.length) {
+				tmp = new boolean[]{bin[i], false, false, false};
+			} else if (i + 2 == bin.length) {
+				tmp = new boolean[]{bin[i], bin[i + 1], false, false};
+			} else if (i + 3 == bin.length) {
+				tmp = new boolean[]{bin[i], bin[i + 1], bin[i + 2], false};
+			} else {
+				tmp = new boolean[]{bin[i], bin[i + 1], bin[i + 2], bin[i + 3]};
+			}
+			switch (bin2dec(tmp)) {
+				case 10:
+					answer += "A";
+					break;
+				case 11:
+					answer += "B";
+					break;
+				case 12:
+					answer += "C";
+					break;
+				case 13:
+					answer += "D";
+					break;
+				case 14:
+					answer += "E";
+					break;
+				case 15:
+					answer += "F";
+					break;
+				default: answer += bin2dec(tmp);
+			}
+		}
+		return answer;
+
+	}
+
 }
