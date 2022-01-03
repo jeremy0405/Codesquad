@@ -13,11 +13,25 @@ public class Main {
 
 		print.printToDec(byteA, byteB, answer);
 
+		print.printBin(byteA);
+		print.printBin(byteB);
+		print.printBin(answer);
+
 		print.printArr(byteA);
 		print.printArr(byteB);
 		print.printArr(answer);
 
-		print.printBin(answer);
+		print.printDecToHex(convertor.dec2hex(31));
+
+		//cosole 출력
+		//24 + 40 = 64
+		//00011
+		//000101
+		//0000001
+		//false false false true true
+		//false false false true false true
+		//false false false false false false true
+		//F1
 
 	}
 

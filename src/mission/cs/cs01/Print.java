@@ -26,4 +26,8 @@ public class Print {
 		}
 	}
 
+	public void printDecToHex(String dec2hex) {
+		System.out.println(dec2hex);
+	}
+
 }
