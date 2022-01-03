@@ -23,6 +23,23 @@ public class Main {
 			}
 		}
 
+		System.out.println();
+		boolean[] byteC = {true, false, true, true};
+		boolean[] byteD = {true, true, false, true, true, false, true, false, true, true, false, true, true, false, true, true};
+
+		boolean[] answer2 = adder.upgradeByteadder(byteC, byteD);
+		for (boolean b : answer2) {
+			System.out.print(b + " ");
+		}
+
+		System.out.println();
+		for (boolean b : answer2) {
+			if(b) {
+				System.out.print(1);
+			} else {
+				System.out.print(0);
+			}
+		}
 	}
 
 }
