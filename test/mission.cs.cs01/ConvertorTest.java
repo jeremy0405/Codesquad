@@ -24,4 +24,12 @@ class ConvertorTest {
 		boolean[] test = {true, true, true, false, true};
 		Assertions.assertEquals(convertor.bin2dec(test), 23);
 	}
+
+	@Test
+	@DisplayName("dec2hex테스트")
+	void dec2hexTest() {
+		String answer = "F1";
+		Assertions.assertEquals(convertor.dec2hex(31).equals(answer), true);
+	}
+
 }
