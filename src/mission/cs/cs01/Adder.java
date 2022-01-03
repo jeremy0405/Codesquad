@@ -44,4 +44,40 @@ public class Adder {
 		return answer;
 	}
 
+	public boolean[] upgradeByteadder(boolean[] byteA, boolean[] byteB) {
+
+		int maxSize = Math.max(byteA.length, byteB.length);
+		boolean[] answer = new boolean[maxSize + 1];
+
+		if(maxSize == byteA.length) {
+			boolean[] tmp = new boolean[maxSize];
+			System.arraycopy(byteB, 0, tmp, 0, byteB.length);
+			byteB = tmp;
+		} else {
+			boolean[] tmp = new boolean[maxSize];
+			System.arraycopy(byteA, 0, tmp, 0, byteA.length);
+			byteA = tmp;
+		}
+
+		for (boolean b : byteA) {
+			System.out.print(b + " ");
+		}
+		System.out.println();
+
+		for (boolean b : byteB) {
+			System.out.print(b + " ");
+		}
+
+		boolean carry = false;
+
+		for (int i = 0; i < byteA.length; i++) {
+			boolean[] tmp = fulladder(byteA[i], byteB[i], carry);
+			answer[i] = tmp[1];
+			carry = tmp[0];
+		}
+		answer[maxSize] = carry;
+
+		return answer;
+	}
+
 }
