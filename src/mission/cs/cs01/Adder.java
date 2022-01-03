@@ -59,15 +59,6 @@ public class Adder {
 			byteA = tmp;
 		}
 
-		for (boolean b : byteA) {
-			System.out.print(b + " ");
-		}
-		System.out.println();
-
-		for (boolean b : byteB) {
-			System.out.print(b + " ");
-		}
-
 		boolean carry = false;
 
 		for (int i = 0; i < byteA.length; i++) {
