@@ -63,7 +63,7 @@ class AdderTest {
 	}
 
 	@Test
-	@DisplayName("8비트덧셈기테스트")
+	@DisplayName("서로다른비트수덧셈테스트")
 	void upgradeByteadder() {
 
 		boolean[] byteA = {true, true, false, true, true, false, true, true}; // 11011011    219
