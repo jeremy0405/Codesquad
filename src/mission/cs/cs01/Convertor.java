@@ -5,6 +5,11 @@ public class Convertor {
 	public boolean[] dec2bin(int decimal) {
 
 		boolean[] tmp = new boolean[8];
+
+		if (decimal == 0) {
+			return new boolean[1];
+		}
+
 		int i = 0;
 		while (decimal != 0) {
 			tmp[i] = decimal % 2 != 0;
