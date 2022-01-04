@@ -2,31 +2,34 @@ package mission.cs.cs01;
 
 public class Adder {
 
+	static final int CARRY = 0;
+	static final int SUM = 1;
+
 	Function function = new Function();
 
-	public boolean[] halfadder(boolean bitA, boolean bitB) {
+	private boolean[] halfadder(boolean bitA, boolean bitB) {
 		boolean[] answer = new boolean[2];
 
 		boolean carry = function.and(bitA, bitB);
 		boolean sum = function.xor(bitA, bitB);
 
-		answer[0] = carry;
-		answer[1] = sum;
+		answer[CARRY] = carry;
+		answer[SUM] = sum;
 
 		return answer;
 	}
 
-	public boolean[] fulladder(boolean bitA, boolean bitB, boolean inputCarry) {
+	private boolean[] fulladder(boolean bitA, boolean bitB, boolean inputCarry) {
 		boolean[] answer = new boolean[2];
 
-		boolean tmpCarry = halfadder(bitA, bitB)[0];
-		boolean tmpSum = halfadder(bitA, bitB)[1];
-		
-		boolean carry = function.or(halfadder(tmpSum, inputCarry)[0], tmpCarry);
-		boolean sum = halfadder(tmpSum, inputCarry)[1];
+		boolean tmpCarry = halfadder(bitA, bitB)[CARRY];
+		boolean tmpSum = halfadder(bitA, bitB)[SUM];
 
-		answer[0] = carry;
-		answer[1] = sum;
+		boolean carry = function.or(halfadder(tmpSum, inputCarry)[CARRY], tmpCarry);
+		boolean sum = halfadder(tmpSum, inputCarry)[SUM];
+
+		answer[CARRY] = carry;
+		answer[SUM] = sum;
 
 		return answer;
 	}
@@ -38,8 +41,8 @@ public class Adder {
 
 		for (int i = 0; i < byteA.length; i++) {
 			boolean[] tmp = fulladder(byteA[i], byteB[i], carry);
-			answer[i] = tmp[1];
-			carry = tmp[0];
+			answer[i] = tmp[SUM];
+			carry = tmp[CARRY];
 		}
 		answer[8] = carry;
 
@@ -61,8 +64,8 @@ public class Adder {
 
 		for (int i = 0; i < byteA.length; i++) {
 			boolean[] tmp = fulladder(byteA[i], byteB[i], carry);
-			answer[i] = tmp[1];
-			carry = tmp[0];
+			answer[i] = tmp[SUM];
+			carry = tmp[CARRY];
 		}
 		answer[maxSize] = carry;
 

@@ -23,7 +23,7 @@ public class Main {
 
 		print.printDecToHex(convertor.dec2hex(31));
 
-		//cosole 출력
+		//console 출력
 		//24 + 40 = 64
 		//00011
 		//000101
