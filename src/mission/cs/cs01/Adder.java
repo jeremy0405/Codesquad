@@ -19,9 +19,11 @@ public class Adder {
 	public boolean[] fulladder(boolean bitA, boolean bitB, boolean inputCarry) {
 		boolean[] answer = new boolean[2];
 
-		boolean sum = halfadder(halfadder(bitA, bitB)[1], inputCarry)[1];
-		boolean carry = function.or(halfadder(halfadder(bitA, bitB)[1], inputCarry)[0],
-			halfadder(bitA, bitB)[0]);
+		boolean tmpCarry = halfadder(bitA, bitB)[0];
+		boolean tmpSum = halfadder(bitA, bitB)[1];
+		
+		boolean carry = function.or(halfadder(tmpSum, inputCarry)[0], tmpCarry);
+		boolean sum = halfadder(tmpSum, inputCarry)[1];
 
 		answer[0] = carry;
 		answer[1] = sum;
@@ -49,14 +51,10 @@ public class Adder {
 		int maxSize = Math.max(byteA.length, byteB.length);
 		boolean[] answer = new boolean[maxSize + 1];
 
-		if(maxSize == byteA.length) {
-			boolean[] tmp = new boolean[maxSize];
-			System.arraycopy(byteB, 0, tmp, 0, byteB.length);
-			byteB = tmp;
+		if (maxSize == byteA.length) {
+			byteB = setSameArraySize(byteB, maxSize);
 		} else {
-			boolean[] tmp = new boolean[maxSize];
-			System.arraycopy(byteA, 0, tmp, 0, byteA.length);
-			byteA = tmp;
+			byteA = setSameArraySize(byteA, maxSize);
 		}
 
 		boolean carry = false;
@@ -69,6 +67,13 @@ public class Adder {
 		answer[maxSize] = carry;
 
 		return answer;
+	}
+
+	private boolean[] setSameArraySize(boolean[] byteB, int maxSize) {
+		boolean[] tmp = new boolean[maxSize];
+		System.arraycopy(byteB, 0, tmp, 0, byteB.length);
+		byteB = tmp;
+		return byteB;
 	}
 
 }
