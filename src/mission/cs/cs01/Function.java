@@ -15,7 +15,8 @@ public class Function {
 	}
 
 	public boolean xor(boolean a, boolean b) {
-		return a != b;
+//		return a != b;
+		return and(nand(a, b),or(a, b));
 	}
 
 }
