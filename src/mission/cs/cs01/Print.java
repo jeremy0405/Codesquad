@@ -3,17 +3,16 @@ package mission.cs.cs01;
 public class Print {
 
 	public void printArr(boolean[] arr) {
-		for (Object o : arr) {
-			System.out.print(o + " ");
+		for (boolean b : arr) {
+			System.out.print(b + " ");
 		}
 		System.out.println();
 	}
 
 	public void printToDec(boolean[] a, boolean[] b, boolean[] ab) {
 		Convertor convertor = new Convertor();
-		System.out.println(
-			convertor.bin2dec(a) + " + " + convertor.bin2dec(b) + " = " + convertor.bin2dec(
-				ab));
+		String description = convertor.bin2dec(a) + " + " + convertor.bin2dec(b) + " = " + convertor.bin2dec(ab);
+		System.out.println(description);
 	}
 
 	public void printBin(boolean[] bin) {
