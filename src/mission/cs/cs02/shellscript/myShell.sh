@@ -14,7 +14,7 @@ do
 
 	if [ -n "${csFiles[0]}" ]; then
 		mkdir ../backup/day$i
-		cp *.cs ../backup/day$i
+		cp *.cs ../backup/day$i/
 	else
 		echo day$i"에는 cs파일이 존재하지 않습니다."
 	fi
@@ -25,7 +25,7 @@ done
 
 today=$(date "+%Y%m%d")
 
-zip $today.zip backup/* > /dev/null
+zip -r $today.zip backup/* > /dev/null
 
 scp $today.zip jerry@192.168.0.15:~/backup/$today.zip
 
