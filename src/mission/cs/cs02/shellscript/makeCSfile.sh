@@ -10,6 +10,5 @@ do
 	random_file_name="$(($RANDOM% 10))"
 	random_file_name=$(($random_file_name+1))
 	touch day$random_num/$random_file_name.cs
-	touch day$i/$random_file_name.txt
 done
 
