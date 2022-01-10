@@ -39,4 +39,14 @@ public class Print {
 		output.setLength(0);
 
 	}
+
+	public static void print(int[] render) {
+		output.append("영상클립: ")
+			.append(render[0]).append("개\n")
+			.append("전체길이: ")
+			.append(render[1]).append("sec");
+		System.out.println(output);
+
+		output.setLength(0);
+	}
 }
