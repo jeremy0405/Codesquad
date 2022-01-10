@@ -4,9 +4,10 @@ package mission.cs.cs03;
 public class VideoEditor {
 
 	private VideoData[] videoData;
+	private static final int VIDEO_DATA_NUMBER = 13;
 
 	public void init() {
-		videoData = new VideoData[13];
+		videoData = new VideoData[VIDEO_DATA_NUMBER];
 		initVideoData();
 	}
 

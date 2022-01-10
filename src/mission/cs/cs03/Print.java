@@ -16,7 +16,6 @@ public class Print {
 		}
 
 		System.out.println("-----영상클립-----");
-
 		System.out.println(output);
 
 		output.setLength(0);
