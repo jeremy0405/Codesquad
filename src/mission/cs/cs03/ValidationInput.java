@@ -11,7 +11,7 @@ public class ValidationInput {
 			case "insert":
 				return validateInsertInput(input, videoData);
 			case "render":
-				return validateRenderInput(input, videoData;
+				return validateRenderInput(input, videoData);
 			default:
 				System.out.println("잘못된 명령입니다. 다시입력해주세요.");
 				return validateInput(UserInput.userInput(), videoData);
