@@ -34,13 +34,25 @@ public class VideoEditor {
 				execDelete(input);
 				return true;
 			case "insert":
-
+				execInsert(input);
 				return true;
 			case "render":
 				Print.print(linkedList.render(linkedList));
 				return false;
 			default:
 				return true;
+		}
+
+	}
+
+	private void execInsert(String[] input) {
+		for (int i = 0; i < VIDEO_DATA_NUMBER; i++) {
+			if (input[1].equals(videoData[i].getId())) {
+				VideoData newData = new VideoData(videoData[i].getTitle(),
+					videoData[i].getId(), videoData[i].getRunTime());
+				linkedList.insert(newData, Integer.parseInt(input[2]));
+				break;
+			}
 		}
 
 	}
