@@ -10,10 +10,9 @@ public class IdCreator {
 	private static IdCreator idCreator;
 	private static final int ID_LENGTH = 4;
 
-	private IdCreator() {
-	}
+	private IdCreator() {}
 
-	public static String getId() {
+	public String getId() {
 
 		Random random = new Random();
 		char[] id = new char[ID_LENGTH];
@@ -27,7 +26,7 @@ public class IdCreator {
 		return output;
 	}
 
-	private static String validate(String output) {
+	private String validate(String output) {
 		int beforeAdd = idSet.size();
 		idSet.add(output);
 		int afterAdd = idSet.size();
