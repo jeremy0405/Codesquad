@@ -44,9 +44,8 @@ public class MyLinkedList {
 			return;
 		} else {
 			if (index == 0) {
-				VideoData tmpData = this.head;
+				inputData.setNextNode(this.head);
 				this.head = inputData;
-				inputData.setNextNode(tmpData);
 			} else {
 				inputData.setNextNode(get(index - 1).getNextNode());
 				get(index - 1).setNextNode(inputData);
