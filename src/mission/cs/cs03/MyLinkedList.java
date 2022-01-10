@@ -24,13 +24,33 @@ public class MyLinkedList {
 		}
 	}
 
-	public void delete(VideoData inputData) {
-		size--;
+	public void delete(VideoData inputData, int index) {
 
+		if (size == 0) {
+			System.out.println("데이터가 존재하지 않습니다. delete명령을 수행할 수 없습니다.");
+			return;
+		}
+		if (index == 0) {
+			this.head = inputData.getNextNode();
+		} else {
+			get(index - 1).setNextNode(inputData.getNextNode());
+		}
+		size--;
 	}
 
 	public void insert(VideoData inputData, int index) {
-		size++;
+		if (index >= size) {
+			add(inputData);
+			return;
+		} else {
+			//todo insert 때 어떻게 할 건지 작성해야 함
+			// 100 101 null
+			// 0   1   2
+			// 100 103 101 null
+
+			get(index).getNextNode();
+			size++;
+		}
 	}
 
 	public int[] render(MyLinkedList linkedList) {
@@ -39,9 +59,7 @@ public class MyLinkedList {
 		for (int i = 0; i < size; i++) {
 			time += linkedList.get(i).getRunTime();
 		}
-
 		return new int[]{size, time};
-
 	}
 
 	public VideoData get(int index) {

@@ -54,19 +54,23 @@ public class VideoEditor {
 				break;
 			}
 		}
-
+		Print.print(linkedList);
 	}
 
 	private void execDelete(String[] input) {
-		for (int i = 0; i < VIDEO_DATA_NUMBER; i++) {
-			if (input[1].equals(videoData[i].getId())) {
-				VideoData newData = new VideoData(videoData[i].getTitle(),
-					videoData[i].getId(), videoData[i].getRunTime());
-				linkedList.delete(newData);
+		int count = 0;
+		for (int i = 0; i < linkedList.size(); i++) {
+			if (input[1].equals(linkedList.get(i).getId())) {
+				linkedList.delete(linkedList.get(i), i);
+				count++;
 				break;
 			}
 		}
-		Print.print(linkedList);
+		if(count == 0) {
+			System.out.println("id값이 랜더링 리스트 중에 존재하지 않습니다.");
+		} else {
+			Print.print(linkedList);
+		}
 	}
 
 	private void execAdd(String[] input) {
