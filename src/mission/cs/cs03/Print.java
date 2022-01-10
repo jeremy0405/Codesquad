@@ -1,10 +1,8 @@
 package mission.cs.cs03;
 
 public class Print {
-
+	private static final StringBuilder output = new StringBuilder();
 	public static void print(VideoData[] videoData) {
-
-		StringBuilder output = new StringBuilder();
 
 		for (VideoData videoDatum : videoData) {
 			output.append(videoDatum.getTitle())
