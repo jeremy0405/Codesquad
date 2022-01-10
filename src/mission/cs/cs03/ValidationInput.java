@@ -11,7 +11,7 @@ public class ValidationInput {
 			case "insert":
 				return validateInsertInput(input, videoData);
 			case "render":
-				return validateRenderInput(input);
+				return validateRenderInput(input, videoData;
 			default:
 				System.out.println("잘못된 명령입니다. 다시입력해주세요.");
 				return validateInput(UserInput.userInput(), videoData);
@@ -23,7 +23,7 @@ public class ValidationInput {
 			Integer.parseInt(input[2]);
 		} catch (NumberFormatException e) {
 			System.out.println("Insert의 마지막 입력값은 숫자여야 합니다.");
-			return UserInput.userInput();
+			return validateInput(UserInput.userInput(), videoData);
 		}
 
 		if (input.length == 3) {
@@ -36,7 +36,7 @@ public class ValidationInput {
 		} else {
 			System.out.println("유효하지 않는 명령입니다.");
 		}
-		return UserInput.userInput();
+		return validateInput(UserInput.userInput(), videoData);
 	}
 
 	private String[] validateAddOrDeleteInput(String[] input, VideoData[] videoData) {
@@ -50,15 +50,15 @@ public class ValidationInput {
 		} else {
 			System.out.println("유효하지 않은 명령입니다.");
 		}
-		return UserInput.userInput();
+		return validateInput(UserInput.userInput(), videoData);
 	}
 
-	private String[] validateRenderInput(String[] input) {
+	private String[] validateRenderInput(String[] input, VideoData[] videoData) {
 		if (input.length == 1) {
 			return input;
 		} else {
 			System.out.println("render 명령은 뒤에 인자를 받을 수 없습니다.");
-			return UserInput.userInput();
+			return validateInput(UserInput.userInput(), videoData);
 		}
 	}
 
