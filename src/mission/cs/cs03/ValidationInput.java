@@ -9,13 +9,34 @@ public class ValidationInput {
 			case "delete":
 				return validateAddOrDeleteInput(input, videoData);
 			case "insert":
-				//todo 나중에 생각
+				return validateInsertInput(input, videoData);
 			case "render":
 				return validateRenderInput(input);
 			default:
 				System.out.println("잘못된 명령입니다. 다시입력해주세요.");
 				return UserInput.userInput();
 		}
+	}
+
+	private String[] validateInsertInput(String[] input, VideoData[] videoData) {
+		try {
+			Integer.parseInt(input[2]);
+		} catch (NumberFormatException e) {
+			System.out.println("Insert의 마지막 입력값은 숫자여야 합니다.");
+			return UserInput.userInput();
+		}
+
+		if (input.length == 3) {
+			for (VideoData data : videoData) {
+				if (input[1].equals(data.getId())) {
+					return input;
+				}
+			}
+			System.out.println("유효하지 않는 Id입니다.");
+		} else {
+			System.out.println("유효하지 않는 명령입니다.");
+		}
+		return UserInput.userInput();
 	}
 
 	private String[] validateAddOrDeleteInput(String[] input, VideoData[] videoData) {
