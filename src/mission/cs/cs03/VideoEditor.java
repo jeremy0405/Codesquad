@@ -17,31 +17,56 @@ public class VideoEditor {
 		Print.print(videoData);
 		linkedList = new MyLinkedList();
 
-		while (true) {
+		boolean isWork = true;
+		while (isWork) {
 			String[] input = val.validateInput(UserInput.userInput(), videoData);
-			classifyInput(input);
-			Print.print(linkedList);
+			isWork = classifyInput(input);
 		}
 
 	}
 
-	private void classifyInput(String[] input) {
+	private boolean classifyInput(String[] input) {
 		switch (input[0]) {
 			case "add":
-				for (int i = 0; i < VIDEO_DATA_NUMBER; i++) {
-					if (input[1].equals(videoData[i].getId())) {
-						VideoData newData = new VideoData(videoData[i].getTitle(),
-							videoData[i].getId(), videoData[i].getRunTime());
-						linkedList.add(newData);
-						break;
-					}
-				}
-				break;
+				execAdd(input);
+				return true;
 			case "delete":
+				execDelete(input);
+				return true;
 			case "insert":
+
+				return true;
 			case "render":
+				Print.print(linkedList.render(linkedList));
+				return false;
+			default:
+				return true;
 		}
 
+	}
+
+	private void execDelete(String[] input) {
+		for (int i = 0; i < VIDEO_DATA_NUMBER; i++) {
+			if (input[1].equals(videoData[i].getId())) {
+				VideoData newData = new VideoData(videoData[i].getTitle(),
+					videoData[i].getId(), videoData[i].getRunTime());
+				linkedList.delete(newData);
+				break;
+			}
+		}
+		Print.print(linkedList);
+	}
+
+	private void execAdd(String[] input) {
+		for (int i = 0; i < VIDEO_DATA_NUMBER; i++) {
+			if (input[1].equals(videoData[i].getId())) {
+				VideoData newData = new VideoData(videoData[i].getTitle(),
+					videoData[i].getId(), videoData[i].getRunTime());
+				linkedList.add(newData);
+				break;
+			}
+		}
+		Print.print(linkedList);
 	}
 
 	private void initVideoData() {

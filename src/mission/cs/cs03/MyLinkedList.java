@@ -3,19 +3,16 @@ package mission.cs.cs03;
 public class MyLinkedList {
 
 	private VideoData head;
-	private VideoData tail;
 	private int size;
 
 	public MyLinkedList() {
 		this.head = null;
-		this.tail = null;
 		this.size = 0;
 	}
 
 	public void add(VideoData inputData) {
 		if (this.head == null) {
 			this.head = inputData;
-			this.tail = inputData;
 			size++;
 		} else {
 			VideoData tmpData = this.head;
@@ -23,20 +20,27 @@ public class MyLinkedList {
 				tmpData = tmpData.getNextNode();
 			}
 			tmpData.setNextNode(inputData);
-			this.tail = inputData;
 			size++;
 		}
 	}
 
-	public void delete(String id) {
+	public void delete(VideoData inputData) {
+		size--;
 
 	}
 
-	public void insert(String id, int index) {
-
+	public void insert(VideoData inputData, int index) {
+		size++;
 	}
 
-	public void render() {
+	public int[] render(MyLinkedList linkedList) {
+
+		int time = 0;
+		for (int i = 0; i < size; i++) {
+			time += linkedList.get(i).getRunTime();
+		}
+
+		return new int[]{size, time};
 
 	}
 
