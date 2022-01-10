@@ -4,11 +4,12 @@ import java.util.Random;
 
 public class VideoData {
 
-	IdCreator idCreator;
 	private final String id;
 	private String title;
 	private int runTime;
 	private VideoData nextNode;
+
+	IdCreator idCreator;
 	private Random random = new Random();
 
 	public VideoData(String title) {
@@ -19,6 +20,12 @@ public class VideoData {
 		this.nextNode = null;
 	}
 
+	public VideoData(String title, String id, int runTime) {
+		this.title = title;
+		this.id = id;
+		this.runTime = runTime;
+		this.nextNode = null;
+	}
 	public String getId() {
 		return id;
 	}
