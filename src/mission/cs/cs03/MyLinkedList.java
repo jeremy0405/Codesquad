@@ -43,11 +43,6 @@ public class MyLinkedList {
 			add(inputData);
 			return;
 		} else {
-			//todo insert 때 어떻게 할 건지 작성해야 함
-			// 0 1
-			// 0
-			// 0 new 1
-			//
 			if (index == 0) {
 				VideoData tmpData = this.head;
 				this.head = inputData;
