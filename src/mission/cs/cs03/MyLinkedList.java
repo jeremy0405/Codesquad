@@ -44,11 +44,18 @@ public class MyLinkedList {
 			return;
 		} else {
 			//todo insert 때 어떻게 할 건지 작성해야 함
-			// 100 101 null
-			// 0   1   2
-			// 100 103 101 null
-
-			get(index).getNextNode();
+			// 0 1
+			// 0
+			// 0 new 1
+			//
+			if (index == 0) {
+				VideoData tmpData = this.head;
+				this.head = inputData;
+				inputData.setNextNode(tmpData);
+			} else {
+				inputData.setNextNode(get(index - 1).getNextNode());
+				get(index - 1).setNextNode(inputData);
+			}
 			size++;
 		}
 	}
