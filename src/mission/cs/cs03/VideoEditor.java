@@ -3,19 +3,19 @@ package mission.cs.cs03;
 public class VideoEditor {
 
 	private VideoData[] videoData;
-	private ValidationInput val;
 	private MyLinkedList linkedList;
 	private static final int VIDEO_DATA_NUMBER = 13;
 
 	public void init() {
 		videoData = new VideoData[VIDEO_DATA_NUMBER];
-		val = new ValidationInput();
 		initVideoData();
 	}
 
 	public void start() {
-		Print.print(videoData);
 		linkedList = new MyLinkedList();
+		ValidationInput val = new ValidationInput();
+
+		Print.print(videoData);
 
 		boolean isWork = true;
 		while (isWork) {
