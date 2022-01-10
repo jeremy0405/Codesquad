@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class VideoData {
 
-	private String id;
+	private final String id;
 	private String title;
 	private int runTime;
 	private int nextNode;

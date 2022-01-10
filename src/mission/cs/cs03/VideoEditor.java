@@ -7,13 +7,17 @@ public class VideoEditor {
 
 	public void init() {
 		videoData = new VideoData[13];
-		for (int i = 0; i < 13; i++) {
-			videoData[i] = new VideoData("제목" + (i + 1));
-		}
+		initVideoData();
 	}
 
 	public void start() {
 		Print.print(videoData);
+	}
+
+	private void initVideoData() {
+		for (int i = 0; i < 13; i++) {
+			videoData[i] = new VideoData("제목" + (i + 1));
+		}
 	}
 
 }
