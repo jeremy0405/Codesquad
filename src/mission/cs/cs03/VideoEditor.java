@@ -56,7 +56,6 @@ public class VideoEditor {
 		Print.print(linkedList);
 	}
 
-	//todo execDelete 메서드 마음에 들지 않음 -> 어떻게 리팩토링을 할까.. count 없애고 싶음
 	private void execDelete(String[] input) {
 		boolean isdelete = false;
 		for (int i = 0; i < linkedList.size(); i++) {
