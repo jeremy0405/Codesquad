@@ -20,13 +20,6 @@ public class VideoData {
 		this.nextNode = null;
 	}
 
-	public VideoData(String title, String id, int runTime) {
-		this.title = title;
-		this.id = id;
-		this.runTime = runTime;
-		this.nextNode = null;
-	}
-
 	public VideoData(VideoData videoData) {
 		this.title = videoData.getTitle();
 		this.id = videoData.getId();

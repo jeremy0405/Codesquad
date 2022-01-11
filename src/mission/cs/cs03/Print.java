@@ -4,6 +4,7 @@ public class Print {
 
 	private static final StringBuilder output = new StringBuilder();
 
+	private Print(){}
 	public static void print(VideoData[] videoData) {
 
 		for (VideoData videoDatum : videoData) {
