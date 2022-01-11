@@ -26,6 +26,13 @@ public class VideoData {
 		this.runTime = runTime;
 		this.nextNode = null;
 	}
+
+	public VideoData(VideoData videoData) {
+		this.title = videoData.getTitle();
+		this.id = videoData.getId();
+		this.runTime = videoData.getRunTime();
+		this.nextNode = null;
+	}
 	public String getId() {
 		return id;
 	}

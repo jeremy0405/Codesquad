@@ -41,7 +41,6 @@ public class MyLinkedList {
 	public void insert(VideoData inputData, int index) {
 		if (index >= size) {
 			add(inputData);
-			return;
 		} else {
 			if (index == 0) {
 				inputData.setNextNode(this.head);

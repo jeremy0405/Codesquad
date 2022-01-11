@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class IdCreator {
 
-	private static final Set<String> idSet = new HashSet<String>();
+	private static final Set<String> idSet = new HashSet<>();
 	private static IdCreator idCreator;
 	private static final int ID_LENGTH = 4;
 

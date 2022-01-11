@@ -48,8 +48,7 @@ public class VideoEditor {
 	private void execInsert(String[] input) {
 		for (int i = 0; i < VIDEO_DATA_NUMBER; i++) {
 			if (input[1].equals(videoData[i].getId())) {
-				VideoData newData = new VideoData(videoData[i].getTitle(),
-					videoData[i].getId(), videoData[i].getRunTime());
+				VideoData newData = new VideoData(videoData[i]);
 				linkedList.insert(newData, Integer.parseInt(input[2]));
 				break;
 			}
@@ -57,6 +56,7 @@ public class VideoEditor {
 		Print.print(linkedList);
 	}
 
+	//todo execDelete 메서드 마음에 들지 않음 -> 어떻게 리팩토링을 할까.. count 없애고 싶음
 	private void execDelete(String[] input) {
 		int count = 0;
 		for (int i = 0; i < linkedList.size(); i++) {
@@ -76,8 +76,7 @@ public class VideoEditor {
 	private void execAdd(String[] input) {
 		for (int i = 0; i < VIDEO_DATA_NUMBER; i++) {
 			if (input[1].equals(videoData[i].getId())) {
-				VideoData newData = new VideoData(videoData[i].getTitle(),
-					videoData[i].getId(), videoData[i].getRunTime());
+				VideoData newData = new VideoData(videoData[i]);
 				linkedList.add(newData);
 				break;
 			}

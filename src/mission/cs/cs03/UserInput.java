@@ -6,7 +6,7 @@ public class UserInput {
 
 	public static String[] userInput() {
 		Scanner sc = new Scanner(System.in);
-		return sc.nextLine().toLowerCase().split(" ");
+		return sc.nextLine().toLowerCase().split("\\s");
 	}
 
 }
