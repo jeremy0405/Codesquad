@@ -58,18 +58,18 @@ public class VideoEditor {
 
 	//todo execDelete 메서드 마음에 들지 않음 -> 어떻게 리팩토링을 할까.. count 없애고 싶음
 	private void execDelete(String[] input) {
-		int count = 0;
+		boolean isdelete = false;
 		for (int i = 0; i < linkedList.size(); i++) {
 			if (input[1].equals(linkedList.get(i).getId())) {
 				linkedList.delete(linkedList.get(i), i);
-				count++;
+				isdelete = true;
 				break;
 			}
 		}
-		if(count == 0) {
-			System.out.println("id값이 랜더링 리스트 중에 존재하지 않습니다.");
-		} else {
+		if(isdelete) {
 			Print.print(linkedList);
+		} else {
+			System.out.println("id값이 랜더링 리스트 중에 존재하지 않습니다.");
 		}
 	}
 
