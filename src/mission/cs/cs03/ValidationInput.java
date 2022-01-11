@@ -21,7 +21,7 @@ public class ValidationInput {
 	private String[] validateInsertInput(String[] input, VideoData[] videoData) {
 		try {
 			Integer.parseInt(input[2]);
-		} catch (NumberFormatException e) {
+		} catch (Exception e) {
 			System.out.println("Insert의 마지막 입력값은 숫자여야 합니다.");
 			return validateInput(UserInput.userInput(), videoData);
 		}

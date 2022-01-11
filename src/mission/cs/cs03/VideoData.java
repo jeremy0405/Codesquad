@@ -10,7 +10,7 @@ public class VideoData {
 	private VideoData nextNode;
 
 	IdCreator idCreator;
-	private Random random = new Random();
+	private static final Random random = new Random();
 
 	public VideoData(String title) {
 		idCreator = IdCreator.getInstance();
