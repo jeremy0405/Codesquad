@@ -6,24 +6,18 @@ import java.util.List;
 //
 public class Menu {
 
-	private Input input;
+	private final Input input;
+
 	public Menu() {
 		input = new Input();
 	}
+
 	public void start() {
+		ShapeFactory factory = new ShapeFactory();
 		List<Point> points = input.getPoints();
+		Shape shape = factory.getShape(points);
 
-		//todo input에서 받은 points 를 통해서 팩토리 패턴 돌려야함
-		// 인터페이스 만들고
-		// 직선, 삼각형, 사각형, 다각형 구현해야 함
-		// 구현한 거 기반으로 출력해야 함 -> 출력 클래스 생성해야 함
-		for (Point point : points) {
-			System.out.println(point.getX() + " " + point.getY());
-		}
-
-		Shape shape = new Line(points);
 		System.out.println(shape.getResult());
-
 	}
 
 }

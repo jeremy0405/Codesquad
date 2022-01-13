@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-public class Input{
+public class Input {
 
 	private List<Point> points = new ArrayList<>();
 	Scanner sc = new Scanner(System.in);

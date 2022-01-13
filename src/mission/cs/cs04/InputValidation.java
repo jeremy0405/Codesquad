@@ -7,7 +7,6 @@ public class InputValidation {
 	public List<Point> validateInput(List<Point> points) throws Exception {
 
 		checkInputPair(points);
-
 		checkInputRange(points);
 
 		return points;
