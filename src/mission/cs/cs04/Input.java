@@ -10,7 +10,7 @@ public class Input {
 	private List<Point> points = new ArrayList<>();
 	Scanner sc = new Scanner(System.in);
 
-	public List<String> getUserInput() {
+	private List<String> getUserInput() {
 		List<String> stringPointList = new ArrayList<>();
 		try {
 			StringTokenizer st = new StringTokenizer(sc.nextLine(), "-");

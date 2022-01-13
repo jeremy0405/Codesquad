@@ -12,7 +12,7 @@ public class Polygon implements Shape {
 
 	@Override
 	public double getResult() {
-		return 0;
+		return Calculator.calculateArea(points);
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package mission.cs.cs04;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Rectangle implements Shape {
@@ -10,9 +11,17 @@ public class Rectangle implements Shape {
 		this.points = points;
 	}
 
+	public Rectangle(int width, int height) {
+		points = new ArrayList<>();
+		points.add(new Point(0, 0));
+		points.add(new Point(0, height));
+		points.add(new Point(width, 0));
+		points.add(new Point(width, height));
+	}
+
 	@Override
 	public double getResult() {
-		return 0;
+		return Calculator.calculateArea(points);
 	}
 
 	@Override
