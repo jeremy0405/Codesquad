@@ -4,22 +4,16 @@ import java.util.List;
 
 public class ShapeFactory {
 
-	Shape shape;
-
 	public Shape getShape(List<Point> points) {
 		switch (points.size()) {
 			case 2:
-				shape = new Line(points);
-				return shape;
+				return new Line(points);
 			case 3:
-				shape = new Triangle(points);
-				return shape;
+				return new Triangle(points);
 			case 4:
-				shape = new Rectangle(points);
-				return shape;
+				return new Rectangle(points);
 			default:
-				shape = new Polygon(points);
-				return shape;
+				return new Polygon(points);
 		}
 	}
 }
