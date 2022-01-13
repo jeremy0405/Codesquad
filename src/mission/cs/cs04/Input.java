@@ -27,12 +27,11 @@ public class Input {
 	public List<Point> getPoints() {
 		InputValidation val = new InputValidation();
 		List<String> stringPointList = getUserInput();
-		for (String s : stringPointList) {
-			String[] xy = s.split(",");
-			points.add(new Point(Integer.parseInt(xy[0]), Integer.parseInt(xy[1])));
-		}
-
 		try {
+			for (String s : stringPointList) {
+				String[] xy = s.split(",");
+				points.add(new Point(Integer.parseInt(xy[0]), Integer.parseInt(xy[1])));
+			}
 			points = val.validateInput(points);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
