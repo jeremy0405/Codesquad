@@ -3,12 +3,13 @@ package mission.cs.cs04;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Rectangle implements Shape {
+public class Rectangle extends Polygon {
 
 	private final List<Point> points;
 
 	public Rectangle(List<Point> points) {
-		this.points = points;
+		super(points);
+		this.points = super.getPoints();
 	}
 
 	public Rectangle(int width, int height) {
@@ -20,18 +21,8 @@ public class Rectangle implements Shape {
 	}
 
 	@Override
-	public double getResult() {
-		return Calculator.calculateArea(points);
-	}
-
-	@Override
 	public String getMessage() {
 		return "사각형 넓이";
-	}
-
-	@Override
-	public List<Point> getPoints() {
-		return points;
 	}
 
 }

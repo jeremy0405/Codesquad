@@ -10,6 +10,10 @@ public class Polygon implements Shape {
 		this.points = points;
 	}
 
+	protected Polygon() {
+		points = null;
+	}
+
 	@Override
 	public double getResult() {
 		return Calculator.calculateArea(points);
