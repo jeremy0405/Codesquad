@@ -12,7 +12,20 @@ public class Triangle implements Shape {
 
 	@Override
 	public double getResult() {
-		return 0;
+		Point pointA = points.get(0);
+		Point pointB = points.get(1);
+		Point pointC = points.get(2);
+
+		int pointAX = pointA.getX();
+		int pointAY = pointA.getY();
+		int pointBX = pointB.getX();
+		int pointBY = pointB.getY();
+		int pointCX = pointC.getX();
+		int pointCY = pointC.getY();
+
+		return (double) Math.abs(
+			pointAX * pointBY + pointBX * pointCY + pointCX * pointAY - pointBX * pointAY
+				- pointCX * pointBY - pointAX * pointCY) / 2;
 	}
 
 	@Override
