@@ -19,4 +19,10 @@ public class Rectangle implements Shape {
 	public String getMessage() {
 		return "사각형 넓이";
 	}
+
+	@Override
+	public List<Point> getPoints() {
+		return points;
+	}
+
 }

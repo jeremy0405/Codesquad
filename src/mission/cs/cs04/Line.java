@@ -30,4 +30,9 @@ public class Line implements Shape {
 		return "두 점 사이의 거리";
 	}
 
+	@Override
+	public List<Point> getPoints() {
+		return points;
+	}
+
 }

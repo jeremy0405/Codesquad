@@ -19,4 +19,10 @@ public class Triangle implements Shape {
 	public String getMessage() {
 		return "삼각형 넓이";
 	}
+
+	@Override
+	public List<Point> getPoints() {
+		return points;
+	}
+
 }
