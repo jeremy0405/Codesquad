@@ -17,7 +17,7 @@ public class Menu {
 		List<Point> points = input.getPoints();
 		Shape shape = factory.getShape(points);
 
-		System.out.println(shape.getResult());
+		Print.print(shape);
 	}
 
 }
