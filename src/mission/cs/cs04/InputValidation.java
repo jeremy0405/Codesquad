@@ -16,6 +16,9 @@ public class InputValidation {
 		for (Point point : points) {
 			if (point.getX() < 0 || point.getX() >= 25 || point.getY() < 0 || point.getY() >= 25) {
 				throw new Exception("유효하지 않은 값 범위입니다.");
+				//IllegalArgumentException
+				//IllegalStateException
+				//RuntimeException 상속받아서 커스텀 예외 해봐
 			}
 		}
 	}
