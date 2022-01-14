@@ -35,6 +35,7 @@ public class Input {
 			points = val.validateInput(points);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
+//			e.printStackTrace();
 			resetInput();
 		}
 
