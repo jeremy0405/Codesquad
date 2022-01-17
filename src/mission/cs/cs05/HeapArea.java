@@ -33,7 +33,7 @@ public class HeapArea {
 			heapMemory[i] = 1;
 		}
 
-		heapMemory[randomAddress + memorySize] = 127;
+		heapMemory[randomAddress + memorySize] = 255;
 
 		remainMemory -= memorySize;
 		return randomAddress;
@@ -41,7 +41,7 @@ public class HeapArea {
 
 	public void freeMemory(int pointer) {
 		int i = 0;
-		while (heapMemory[pointer + i] != 127) {
+		while (heapMemory[pointer + i] != 255) {
 			heapMemory[pointer + i++] = 0;
 		}
 		heapMemory[pointer + i] = 0;

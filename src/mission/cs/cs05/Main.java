@@ -1,7 +1,5 @@
 package mission.cs.cs05;
 
-import java.util.List;
-
 public class Main {
 
 	public static void main(String[] args) {
@@ -10,7 +8,6 @@ public class Main {
 		memory.setSize("int", 4);
 		memory.setSize("mouse", 32);
 		memory.setSize("cat", 8);
-
 
 		int arrayInt = memory.malloc("int", 20);
 		printstatus(arrayInt, stackMemoryAddress, memory);
@@ -23,13 +20,17 @@ public class Main {
 
 		Print.print(memory.usage());
 
+		for (String s : memory.heapdump()) {
+			System.out.print(s + " ");
+		}
+		System.out.println();
+
 		memory.free(arrayInt);
 
 		for (String s : memory.heapdump()) {
 			System.out.print(s + " ");
 		}
 		System.out.println();
-
 
 		memory.free(arrayMouse);
 		for (String s : memory.heapdump()) {
@@ -39,7 +40,6 @@ public class Main {
 		memory.free(arrayCat);
 
 		Print.print(memory.usage());
-
 
 	}
 

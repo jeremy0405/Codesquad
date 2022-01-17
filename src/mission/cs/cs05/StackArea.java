@@ -51,8 +51,6 @@ public class StackArea {
 			'}';
 	}
 
-
-
 	public void removeStack(int i) {
 //		stackPointer += Integer.parseInt(stack.elementAt(i).get(2));
 		stackPointer += REFERENCE_TYPE_MEMORY;
