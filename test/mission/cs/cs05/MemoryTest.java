@@ -18,6 +18,8 @@ class MemoryTest {
 
 		memory.setSize("int", 4);
 
+		memory.malloc("int", 10);
+
 
 	}
 

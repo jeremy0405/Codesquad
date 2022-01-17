@@ -27,12 +27,7 @@ public class Memory {
 	}
 
 	public String malloc(String type, int count) {
-		//todo 등록된 type인지 확인
-		// 등록된 type이면 length 8 이상인지 확인
-		// 8 미만이면 패딩 추가
-		// count만큼 반복해서 heap영역에 추가
-		// 0번째 index의 힙 주소를 가지고 있어야 되고
-		// malloc의
+		stackArea.pushStack(type, count);
 
 		return "";
 	}
