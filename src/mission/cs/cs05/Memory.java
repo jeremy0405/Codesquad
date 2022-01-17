@@ -1,22 +1,33 @@
 package mission.cs.cs05;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Memory {
 
-	private static final int INIT_HEAP_ADDRESS = 0;
-	private int stackSize;
-	private int heapSize;
-	private int MEMORY_SIZE;
+	private StackArea stackArea;
+	private HeapArea heapArea;
+	private int totalMemory;
+	private Map<String, Integer> typeStorage;
 
-	private Memory(){}
+	private static final int INIT_HEAP_ADDRESS = 0;
+
+	public Memory() {
+		typeStorage = new HashMap<>();
+	}
 
 	public String init(int stackSize, int heapSize) {
-		this.stackSize = stackSize;
-		this.heapSize = heapSize;
-		MEMORY_SIZE = INIT_HEAP_ADDRESS + stackSize + heapSize;
-		return Integer.toHexString(MEMORY_SIZE);
+		heapArea = new HeapArea(heapSize);
+		stackArea = new StackArea(stackSize, heapArea);
+		totalMemory = INIT_HEAP_ADDRESS + stackSize + heapSize;
+		return Integer.toHexString(totalMemory);
 	}
 
 	public void setSize(String type, int length) {
+
+
+		this.typeStorage.put(type, length);
+
 		//todo type을 저장, 사이즈도 저장
 		// 한번 저장한 type은 다시 사이즈 변경 불가능
 		// 사이즈는 1, 2, 4, 8, 16, 32 byte만 가능
