@@ -1,7 +1,6 @@
 package mission.cs.cs05;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Stack;
 
 public class StackArea {
@@ -14,25 +13,42 @@ public class StackArea {
 
 	public StackArea(int stackSize, HeapArea heapArea, TypeStorage typeStorage) {
 		this.size = stackSize;
-		this.stackPointer = size;
+		this.stackPointer = heapArea.getSize() + size;
 		this.typeStorage = typeStorage;
 		this.stack = new Stack<>();
 		this.heapArea = heapArea;
 	}
 
 	public void pushStack(String type, int count) {
-		int abc = typeStorage.getTypeLength(type);
-		stackPointer -= abc;
-		int pointer = heapArea.allocateMemory(this.typeStorage.getTypeLength(type) * count);
-		stack.push(List.of(type, String.valueOf(abc), String.valueOf(pointer)));
+		int typeLength = typeStorage.getTypeLength(type);
+		stackPointer -= typeLength;
+		if (typeLength < 8) {
+			typeLength = 8;
+		}
+		int pointer = heapArea.allocateMemory(typeLength * count);
+
+		// todo 0 : stackpointer     1 : type    2 : length    3 : heapPointer
+		stack.push(List.of(String.valueOf(stackPointer), type, String.valueOf(typeStorage.getTypeLength(type)), String.valueOf(pointer)));
 	}
 
 	public int getStackPointer() {
 		return stackPointer;
 	}
 
+	public Stack<List<String>> getStack() {
+		return stack;
+	}
+
 	public int getSize() {
 		return size;
 	}
 
+	@Override
+	public String toString() {
+		return "StackArea{" +
+			"스택 영역 전체 크기 = " + size +
+			", 사용중인 용량 = " + (size - stackPointer + heapArea.getSize()) +
+			", 남은 용량 = " + (stackPointer - heapArea.getSize()) +
+			'}';
+	}
 }

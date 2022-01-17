@@ -17,8 +17,28 @@ class MemoryTest {
 		System.out.println(stackMemoryAddress);
 
 		memory.setSize("int", 4);
+		memory.setSize("jerry", 32);
 
-		memory.malloc("int", 10);
+		int arrayInt = memory.malloc("int", 10);
+		System.out.print("stack 주소 값 : ");
+		System.out.println(arrayInt);
+		System.out.print("stack 상대주소 값 : ");
+		System.out.println(stackMemoryAddress - arrayInt);
+		System.out.print("heap 주소 값 : ");
+		System.out.println(memory.getStackArea().getStack().peek().get(3));
+
+
+		int arrayJerry = memory.malloc("jerry", 5);
+		System.out.print("stack 주소 값 : ");
+		System.out.println(arrayJerry);
+		System.out.print("stack 상대주소 값 : ");
+		System.out.println(stackMemoryAddress - arrayJerry);
+		System.out.print("heap 주소 값 : ");
+		System.out.println(memory.getStackArea().getStack().peek().get(3));
+
+
+		memory.free(arrayInt);
+		memory.free(arrayJerry);
 
 
 	}
