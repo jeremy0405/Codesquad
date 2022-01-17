@@ -6,6 +6,7 @@ import java.util.Stack;
 public class StackArea {
 
 	private final int size;
+	private final static int REFERENCE_TYPE_MEMORY = 4;
 	private int stackPointer;
 	private final Stack<List<String>> stack;
 	private final TypeStorage typeStorage;
@@ -21,7 +22,8 @@ public class StackArea {
 
 	public void pushStack(String type, int count) {
 		int typeLength = typeStorage.getTypeLength(type);
-		stackPointer -= typeLength;
+		stackPointer -= REFERENCE_TYPE_MEMORY;
+//		stackPointer -= typeLength;
 		if (typeLength < 8) {
 			typeLength = 8;
 		}
@@ -40,10 +42,6 @@ public class StackArea {
 		return stack;
 	}
 
-	public int getSize() {
-		return size;
-	}
-
 	@Override
 	public String toString() {
 		return "StackArea{" +
@@ -53,8 +51,21 @@ public class StackArea {
 			'}';
 	}
 
+
+
 	public void removeStack(int i) {
-		stackPointer += Integer.parseInt(stack.elementAt(i).get(2));
+//		stackPointer += Integer.parseInt(stack.elementAt(i).get(2));
+		stackPointer += REFERENCE_TYPE_MEMORY;
 		stack.remove(i);
+	}
+
+	public void callMethod(String name, int paramCount) {
+
+			stackPointer -= REFERENCE_TYPE_MEMORY * paramCount;
+
+			// todo 0 : stackpointer     1 : type    2 : length    3 : heapPointer
+			// todo 0 : stackpointer     1 : name    2 : paramCount
+			stack.push(List.of(String.valueOf(stackPointer), name, String.valueOf(REFERENCE_TYPE_MEMORY * paramCount)));
+
 	}
 }

@@ -66,6 +66,10 @@ public class Memory {
 		return headdumpArray;
 	}
 
+	public void call(String name, int paramCount) {
+		stackArea.callMethod(name, paramCount);
+	}
+
 	public StackArea getStackArea() {
 		return stackArea;
 	}
