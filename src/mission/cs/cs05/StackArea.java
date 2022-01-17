@@ -28,6 +28,7 @@ public class StackArea {
 		int pointer = heapArea.allocateMemory(typeLength * count);
 
 		// todo 0 : stackpointer     1 : type    2 : length    3 : heapPointer
+		// todo 0 : stackpointer     1 : name    2 : paramCount
 		stack.push(List.of(String.valueOf(stackPointer), type, String.valueOf(typeStorage.getTypeLength(type)), String.valueOf(pointer)));
 	}
 
@@ -50,5 +51,10 @@ public class StackArea {
 			", 사용중인 용량 = " + (size - stackPointer + heapArea.getSize()) +
 			", 남은 용량 = " + (stackPointer - heapArea.getSize()) +
 			'}';
+	}
+
+	public void removeStack(int i) {
+		stackPointer += Integer.parseInt(stack.elementAt(i).get(2));
+		stack.remove(i);
 	}
 }

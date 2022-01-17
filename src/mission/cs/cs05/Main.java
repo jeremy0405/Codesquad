@@ -6,7 +6,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		Memory memory = new Memory();
-		int stackMemoryAddress = memory.init(10000, 10000);
+		int stackMemoryAddress = memory.init(10000, 1000);
 		memory.setSize("int", 4);
 		memory.setSize("mouse", 32);
 		memory.setSize("cat", 8);
@@ -46,7 +46,18 @@ public class Main {
 		Print.print((StackArea) abc.get(0), (HeapArea) abc.get(1));
 
 		memory.free(arrayInt);
-//		memory.free(arrayMouse);
+
+		for (String s : memory.heapdump()) {
+			System.out.print(s + " ");
+		}
+		System.out.println();
+
+
+		memory.free(arrayMouse);
+		for (String s : memory.heapdump()) {
+			System.out.print(s + " ");
+		}
+		System.out.println();
 		memory.free(arrayCat);
 
 		abc = memory.usage();
