@@ -36,10 +36,11 @@ public class Memory {
 
 	public void free(int pointer) {
 
-		Stack<List<String>> stack = stackArea.getStack();
+		Stack<Pointer> stack = stackArea.getStack();
 		for (int i = 0; i < stackArea.getStack().size(); i++) {
-			if (Integer.parseInt(stack.elementAt(i).get(0)) == pointer) {
-				heapArea.freeMemory(Integer.parseInt(stack.elementAt(i).get(3)));
+			if (stack.elementAt(i).getStackPointer() == pointer) {
+				StackPoint tmp = (StackPoint) stack.elementAt(i);
+				heapArea.freeMemory(tmp.getHeapPointer());
 				stackArea.removeStack(i);
 			}
 		}
@@ -54,14 +55,17 @@ public class Memory {
 		int totalVariable = stackArea.getStack().size() * 3;
 		String[] headdumpArray = new String[totalVariable];
 		int i = 0;
-		for (List<String> strings : stackArea.getStack()) {
-			if (strings.size() != 4) {
+		for (Pointer strings : stackArea.getStack()) {
+
+			if (strings instanceof CallPointer) {
 				continue;
+			} else {
+				StackPoint tmp = (StackPoint) strings;
+				headdumpArray[i] = tmp.getType();
+				headdumpArray[i + 1] = String.valueOf(tmp.getLength());
+				headdumpArray[i + 2] = String.valueOf(tmp.getHeapPointer());
+				i += 3;
 			}
-			headdumpArray[i] = strings.get(2);
-			headdumpArray[i + 1] = strings.get(1);
-			headdumpArray[i + 2] = strings.get(3);
-			i += 3;
 		}
 		return headdumpArray;
 	}

@@ -8,6 +8,7 @@ public class Main {
 		memory.setSize("int", 4);
 		memory.setSize("mouse", 32);
 		memory.setSize("cat", 8);
+		memory.setSize("cat", 1);
 
 		int arrayInt = memory.malloc("int", 20);
 		printstatus(arrayInt, stackMemoryAddress, memory);
@@ -19,6 +20,12 @@ public class Main {
 		printstatus(arrayCat, stackMemoryAddress, memory);
 
 		Print.print(memory.usage());
+
+		memory.call("method1", 10);
+
+		System.out.println("메소드 콜 이후");
+		Print.print(memory.usage());
+		System.out.println();
 
 		for (String s : memory.heapdump()) {
 			System.out.print(s + " ");
@@ -49,7 +56,8 @@ public class Main {
 		System.out.print("stack 상대주소 값 : ");
 		System.out.println(stackMemoryAddress - arrayInt);
 		System.out.print("heap 주소 값 : ");
-		System.out.println(memory.getStackArea().getStack().peek().get(3));
+		StackPoint tmp = (StackPoint) memory.getStackArea().getStack().peek();
+		System.out.println(tmp.getHeapPointer());
 		System.out.println("");
 	}
 

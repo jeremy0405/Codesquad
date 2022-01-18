@@ -8,22 +8,19 @@ import java.util.Set;
 public class TypeStorage {
 
 	private final Map<String, Integer> typeMap;
-	private final Set<String> typeSet;
 
 	public TypeStorage() {
 		typeMap = new HashMap<>();
-		typeSet = new HashSet<>();
 	}
 
 	public void putType(String type, int length) {
 
-		if (this.typeSet.add(type)) {
-			this.typeMap.put(type, length);
-		} else {
+		if (this.typeMap.containsKey(type)) {
 			throw new IllegalArgumentException("이미 정의된 type입니다.");
 		}
-
 		validateLength(length);
+
+		this.typeMap.put(type, length);
 
 	}
 
@@ -36,13 +33,12 @@ public class TypeStorage {
 	}
 
 	public int getTypeLength(String type) {
-		for (String s : typeSet) {
+		for (String s : typeMap.keySet()) {
 			if (s.equals(type)) {
 				return typeMap.get(type);
 			}
 		}
 		throw new IllegalArgumentException("정의되지 않은 type입니다.");
 	}
-
 
 }

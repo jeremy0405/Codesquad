@@ -25,7 +25,7 @@ class MemoryTest {
 		System.out.print("stack 상대주소 값 : ");
 		System.out.println(stackMemoryAddress - arrayInt);
 		System.out.print("heap 주소 값 : ");
-		System.out.println(memory.getStackArea().getStack().peek().get(3));
+
 
 
 		int arrayJerry = memory.malloc("jerry", 5);
@@ -34,7 +34,7 @@ class MemoryTest {
 		System.out.print("stack 상대주소 값 : ");
 		System.out.println(stackMemoryAddress - arrayJerry);
 		System.out.print("heap 주소 값 : ");
-		System.out.println(memory.getStackArea().getStack().peek().get(3));
+
 
 
 		memory.free(arrayInt);

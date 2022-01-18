@@ -1,6 +1,5 @@
 package mission.cs.cs05;
 
-import java.util.List;
 import java.util.Stack;
 
 public class StackArea {
@@ -8,7 +7,7 @@ public class StackArea {
 	private final int size;
 	private final static int REFERENCE_TYPE_MEMORY = 4;
 	private int stackPointer;
-	private final Stack<List<String>> stack;
+	private final Stack<Pointer> stack; //call  malloc
 	private final TypeStorage typeStorage;
 	private HeapArea heapArea;
 
@@ -23,22 +22,19 @@ public class StackArea {
 	public void pushStack(String type, int count) {
 		int typeLength = typeStorage.getTypeLength(type);
 		stackPointer -= REFERENCE_TYPE_MEMORY;
-//		stackPointer -= typeLength;
 		if (typeLength < 8) {
 			typeLength = 8;
 		}
 		int pointer = heapArea.allocateMemory(typeLength * count);
 
-		// todo 0 : stackpointer     1 : type    2 : length    3 : heapPointer
-		// todo 0 : stackpointer     1 : name    2 : paramCount
-		stack.push(List.of(String.valueOf(stackPointer), type, String.valueOf(typeStorage.getTypeLength(type)), String.valueOf(pointer)));
+		stack.push(new StackPoint(stackPointer, type, typeStorage.getTypeLength(type), pointer));
 	}
 
 	public int getStackPointer() {
 		return stackPointer;
 	}
 
-	public Stack<List<String>> getStack() {
+	public Stack<Pointer> getStack() {
 		return stack;
 	}
 
@@ -52,18 +48,15 @@ public class StackArea {
 	}
 
 	public void removeStack(int i) {
-//		stackPointer += Integer.parseInt(stack.elementAt(i).get(2));
 		stackPointer += REFERENCE_TYPE_MEMORY;
 		stack.remove(i);
 	}
 
 	public void callMethod(String name, int paramCount) {
 
-			stackPointer -= REFERENCE_TYPE_MEMORY * paramCount;
+			stackPointer -= REFERENCE_TYPE_MEMORY * (paramCount + 1);
 
-			// todo 0 : stackpointer     1 : type    2 : length    3 : heapPointer
-			// todo 0 : stackpointer     1 : name    2 : paramCount
-			stack.push(List.of(String.valueOf(stackPointer), name, String.valueOf(REFERENCE_TYPE_MEMORY * paramCount)));
+			stack.push(new CallPointer(stackPointer, name, paramCount));
 
 	}
 }
