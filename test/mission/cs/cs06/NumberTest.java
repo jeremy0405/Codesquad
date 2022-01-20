@@ -2,6 +2,7 @@ package mission.cs.cs06;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.IntStream;
@@ -44,9 +45,21 @@ class NumberTest {
 	@Test
 	@DisplayName("출력 테스트")
 	void print() {
+//		IntStream.rangeClosed(2, 100)
+//			.mapToObj(n -> List.of(new ClassifierAlpha(n), new PrimeAlpha(n), new SquaredAlpha(n)))
+//			.map(this::getString)
+//			.forEach(System.out::println);
+		String[] first = IntStream.rangeClosed(2, 100)
+			.mapToObj(i -> String.valueOf(new ClassifierAlpha(i).getString())).toArray(String[]::new);
+
+		String[] second = IntStream.rangeClosed(2, 100)
+			.mapToObj(i -> String.valueOf(new PrimeAlpha(i).getString())).toArray(String[]::new);
+
+		String[] third = IntStream.rangeClosed(2, 100)
+			.mapToObj(i -> String.valueOf(new SquaredAlpha(i).getString())).toArray(String[]::new);
+
 		IntStream.rangeClosed(2, 100)
-			.mapToObj(n -> List.of(new ClassifierAlpha(n), new PrimeAlpha(n), new SquaredAlpha(n)))
-			.map(this::getString)
+			.mapToObj(i -> new String(i + " : "+ first[i - 2] + second[i - 2] + third[i - 2]))
 			.forEach(System.out::println);
 	}
 
