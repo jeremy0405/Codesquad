@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class NumberClassifier {
+public abstract class NumberClassifier {
 
 	protected final int number;
 
@@ -19,29 +19,6 @@ public class NumberClassifier {
 			.collect(HashSet::new, HashSet::addAll, HashSet::addAll);
 	}
 
-	public String getString() {
-		return "";
-	}
-
-	public boolean isPerfect() {
-		return false;
-	}
-
-	public boolean isAbundant() {
-		return false;
-	}
-
-	public boolean isDeficient() {
-		return false;
-	}
-
-	public boolean isPrime() {
-		return false;
-	}
-
-	public boolean isSquared() {
-		return false;
-	}
-
+	abstract String getString();
 
 }
