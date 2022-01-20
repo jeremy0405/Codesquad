@@ -9,7 +9,7 @@ public class SquaredAlpha extends NumberClassifier {
 	}
 
 	private static final Predicate<Integer> isSquared = number -> factor(number).size() % 2 == 1;
-
+	@Override
 	public boolean isSquared() {
 		return isSquared.test(number);
 	}

@@ -9,7 +9,7 @@ public class PrimeAlpha extends NumberClassifier{
 	}
 
 	private static final Predicate<Integer> isPrime = number -> factor(number).size() == 2;
-
+	@Override
 	public boolean isPrime() {
 		return isPrime.test(number);
 	}

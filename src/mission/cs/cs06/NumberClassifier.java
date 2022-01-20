@@ -18,4 +18,26 @@ public class NumberClassifier {
 			.mapToObj(i -> List.of(i, number / i))
 			.collect(HashSet::new, HashSet::addAll, HashSet::addAll);
 	}
+
+	public boolean isPerfect() {
+		return false;
+	}
+
+	public boolean isAbundant() {
+		return false;
+	}
+
+	public boolean isDeficient() {
+		return false;
+	}
+
+	public boolean isPrime() {
+		return false;
+	}
+
+	public boolean isSquared() {
+		return false;
+	}
+
+
 }
