@@ -10,11 +10,7 @@ public class SquaredAlpha extends NumberClassifier {
 
 	@Override
 	public String getString() {
-		if (isSquared()) {
-			return "squared";
-		} else {
-			return "";
-		}
+		return isSquared() ? "squared" : "";
 	}
 
 	private static final Predicate<Integer> isSquared = number -> factor(number).size() % 2 == 1;

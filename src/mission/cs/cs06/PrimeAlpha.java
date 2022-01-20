@@ -12,11 +12,7 @@ public class PrimeAlpha extends NumberClassifier{
 
 	@Override
 	public String getString() {
-		if (isPrime()) {
-			return "prime";
-		} else {
-			return "";
-		}
+		return isPrime() ? "prime" : "";
 	}
 
 	@Override
