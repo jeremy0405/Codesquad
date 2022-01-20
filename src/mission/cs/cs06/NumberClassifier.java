@@ -1,26 +1,21 @@
 package mission.cs.cs06;
 
 import java.util.HashSet;
-import java.util.Set;
-import java.util.function.IntFunction;
+import java.util.List;
+import java.util.stream.IntStream;
 
 public class NumberClassifier {
 
-	protected int number;
+	protected final int number;
 
 	public NumberClassifier(int number) {
 		this.number = number;
 	}
 
-	protected final IntFunction<Set<Integer>> myCustomFunction = num -> {
-		Set<Integer> set = new HashSet<>();
-		for (int i = 1; i <= Math.sqrt(num); i++) {
-			if (num % i == 0) {
-				set.add(i);
-				set.add(num / i);
-			}
-		}
-		return set;
-	};
-
+	HashSet<Integer> factor(int number) {
+		return IntStream.rangeClosed(1, (int) Math.sqrt(number))
+			.filter(i -> number % i == 0)
+			.mapToObj(i -> List.of(i, number / i))
+			.collect(HashSet::new, HashSet::addAll, HashSet::addAll);
+	}
 }

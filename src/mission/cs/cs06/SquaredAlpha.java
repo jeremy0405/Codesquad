@@ -10,7 +10,7 @@ public class SquaredAlpha extends NumberClassifier {
 		if (number < 1) {
 			return false;
 		}
-		return myCustomFunction.apply(number).size() % 2 == 1;
+		return factor(number).size() % 2 == 1;
 	}
 
 	public static void main(String[] args) {

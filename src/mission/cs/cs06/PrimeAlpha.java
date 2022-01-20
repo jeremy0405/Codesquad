@@ -10,7 +10,7 @@ public class PrimeAlpha extends NumberClassifier{
 		if (number < 1) {
 			return false;
 		}
-		return myCustomFunction.apply(number).size() == 2;
+		return factor(number).size() == 2;
 	}
 
 	public static void main(String[] args) {
