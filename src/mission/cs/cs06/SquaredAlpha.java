@@ -8,6 +8,15 @@ public class SquaredAlpha extends NumberClassifier {
 		super(number);
 	}
 
+	@Override
+	public String getString() {
+		if (isSquared()) {
+			return "squared";
+		} else {
+			return "";
+		}
+	}
+
 	private static final Predicate<Integer> isSquared = number -> factor(number).size() % 2 == 1;
 	@Override
 	public boolean isSquared() {

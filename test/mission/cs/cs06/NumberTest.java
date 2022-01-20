@@ -46,29 +46,18 @@ class NumberTest {
 	void print() {
 		IntStream.rangeClosed(2, 100)
 			.mapToObj(n -> List.of(new ClassifierAlpha(n), new PrimeAlpha(n), new SquaredAlpha(n)))
-			.forEach(numberClassifiers -> {
-				String message = numberClassifiers.get(0).number + " : ";
-
-				if (numberClassifiers.get(0).isPerfect()) {
-					message += "perfect, ";
-				} else if (numberClassifiers.get(0).isDeficient()) {
-					message += "deficient, ";
-				} else {
-					message += "abundant, ";
-				}
-
-				if (numberClassifiers.get(1).isPrime()) {
-					message += "prime";
-				}
-
-				if (numberClassifiers.get(2).isSquared()) {
-					message += "squared";
-				}
-
-				System.out.println(message);
-			});
+			.map(this::getString)
+			.forEach(System.out::println);
 	}
 
+	private String getString(List<NumberClassifier> numberClassifiers) {
+		String message = numberClassifiers.get(0).number + " : ";
+
+		message += numberClassifiers.get(0).getString();
+		message += numberClassifiers.get(1).getString();
+		message += numberClassifiers.get(2).getString();
+		return message;
+	}
 
 
 }

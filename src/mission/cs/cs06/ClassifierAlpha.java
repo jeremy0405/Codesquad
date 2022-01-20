@@ -8,6 +8,17 @@ public class ClassifierAlpha extends NumberClassifier{
 		super(number);
 	}
 
+	@Override
+	public String getString() {
+		if (isPerfect()) {
+			return "perfect, ";
+		} else if (isDeficient()) {
+			return "deficient, ";
+		} else {
+			return "abundant, ";
+		}
+	}
+
 	private static final BiPredicate<Integer, Integer> isPerfect = (sum, number) -> sum - number == number;
 
 	private static final BiPredicate<Integer, Integer> isAbundant = (sum, number) -> sum - number > number;

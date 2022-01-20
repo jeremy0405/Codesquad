@@ -19,6 +19,10 @@ public class NumberClassifier {
 			.collect(HashSet::new, HashSet::addAll, HashSet::addAll);
 	}
 
+	public String getString() {
+		return "";
+	}
+
 	public boolean isPerfect() {
 		return false;
 	}
