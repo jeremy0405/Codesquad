@@ -1,8 +1,8 @@
 package mission.cs.cs06;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
+import java.util.function.IntFunction;
 
 public class ClassifierAlpha {
 
@@ -12,46 +12,36 @@ public class ClassifierAlpha {
 		this.number = number;
 	}
 
-	public boolean isFactor(int potentialFactor) {
-		return number % potentialFactor == 0;
-	}
-
-	public Set<Integer> factors() {
-		Set<Integer> factors = new HashSet<>();
-		for (int pod=1; pod <= Math.sqrt(number); pod++) {
-			if (isFactor(pod)) {
-				factors.add(pod);
-				factors.add(number / pod);
+	IntFunction<Set<Integer>> myCustomFunction = num -> {
+		Set<Integer> set = new HashSet<>();
+		for (int i = 1; i < Math.sqrt(num); i++) {
+			if (num % i == 0) {
+				set.add(i);
+				set.add(num / i);
 			}
 		}
-		return factors;
-	}
-
-	static public int sum(Set<Integer> factors) {
-		Iterator<Integer> iterator = factors.iterator();
-		int sum = 0;
-		while (iterator.hasNext()) {
-			sum += (Integer) iterator.next();
-		}
-		return sum;
-	}
+		return set;
+	};
 
 	public boolean isPerfect() {
-		return sum(factors()) - number == number;
+		return myCustomFunction.apply(number).stream().mapToInt(i -> i).sum() - number == number;
 	}
 
 	public boolean isAbundant() {
-		return sum(factors()) - number > number;
+		return myCustomFunction.apply(number).stream().mapToInt(i -> i).sum() - number > number;
 	}
 
 	public boolean isDeficient() {
-		return sum(factors()) - number < number;
+		return myCustomFunction.apply(number).stream().mapToInt(i -> i).sum() - number < number;
 	}
-	public static void main(String[] args) {
-		ClassifierAlpha alpha1 = new ClassifierAlpha(10);
-		ClassifierAlpha alpha2 = new ClassifierAlpha(6);
 
-		System.out.println(alpha1.isPerfect());
-		System.out.println(alpha2.isPerfect());
+	public static void main(String[] args) {
+
+		ClassifierAlpha alpha1;
+
+		for (int i = 1; i <= 28; i++) {
+			alpha1 = new ClassifierAlpha(i);
+			System.out.println(alpha1.isPerfect());
+		}
 	}
 }
