@@ -18,6 +18,13 @@ public class PrimeAlpha {
 		return myCustomFunction.apply(number).size() == 2;
 	}
 
+	public boolean isSquared() {
+		if (number < 1) {
+			return false;
+		}
+		return myCustomFunction.apply(number).size() % 2 == 1;
+	}
+
 	IntFunction<Set<Integer>> myCustomFunction = num -> {
 		Set<Integer> set = new HashSet<>();
 		for (int i = 1; i <= Math.sqrt(num); i++) {
@@ -36,6 +43,13 @@ public class PrimeAlpha {
 		for (int i = 1; i < 30; i++) {
 			prime1 = new PrimeAlpha(i);
 			System.out.println(i + " : " + prime1.isPrime());
+		}
+
+		System.out.println();
+
+		for (int i = 1; i < 30; i++) {
+			prime1 = new PrimeAlpha(i);
+			System.out.println(i + " : " + prime1.isSquared());
 		}
 
 	}
