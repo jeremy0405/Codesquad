@@ -12,7 +12,7 @@ public class NumberClassifier {
 		this.number = number;
 	}
 
-	HashSet<Integer> factor(int number) {
+	protected static HashSet<Integer> factor(int number) {
 		return IntStream.rangeClosed(1, (int) Math.sqrt(number))
 			.filter(i -> number % i == 0)
 			.mapToObj(i -> List.of(i, number / i))

@@ -1,27 +1,17 @@
 package mission.cs.cs06;
 
+import java.util.function.Predicate;
+
 public class SquaredAlpha extends NumberClassifier {
 
 	public SquaredAlpha(int number) {
 		super(number);
 	}
 
+	private static final Predicate<Integer> isSquared = number -> factor(number).size() % 2 == 1;
+
 	public boolean isSquared() {
-		if (number < 1) {
-			return false;
-		}
-		return factor(number).size() % 2 == 1;
-	}
-
-	public static void main(String[] args) {
-
-		SquaredAlpha squaredAlpha;
-
-		for (int i = 1; i < 101; i++) {
-			squaredAlpha = new SquaredAlpha(i);
-			System.out.println(i + " : " + squaredAlpha.isSquared());
-		}
-
+		return isSquared.test(number);
 	}
 
 }

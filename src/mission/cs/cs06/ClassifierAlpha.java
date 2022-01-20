@@ -25,13 +25,4 @@ public class ClassifierAlpha extends NumberClassifier{
 		return isDeficient.test(factor(number).stream().mapToInt(i -> i).sum(), number);
 	}
 
-	public static void main(String[] args) {
-
-		ClassifierAlpha alpha1;
-
-		for (int i = 1; i <= 28; i++) {
-			alpha1 = new ClassifierAlpha(i);
-			System.out.println(i + " : " + alpha1.isPerfect());
-		}
-	}
 }
