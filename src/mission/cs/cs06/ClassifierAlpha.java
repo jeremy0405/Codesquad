@@ -1,30 +1,16 @@
 package mission.cs.cs06;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.function.IntFunction;
+import java.util.function.Predicate;
 
-public class ClassifierAlpha {
-
-	private final int number;
+public class ClassifierAlpha extends NumberClassifier{
 
 	public ClassifierAlpha(int number) {
-		this.number = number;
+		super(number);
 	}
-
-	IntFunction<Set<Integer>> myCustomFunction = num -> {
-		Set<Integer> set = new HashSet<>();
-		for (int i = 1; i <= Math.sqrt(num); i++) {
-			if (num % i == 0) {
-				set.add(i);
-				set.add(num / i);
-			}
-		}
-		return set;
-	};
+	private final Predicate<Integer> isPerfect = n -> n - number == number;
 
 	public boolean isPerfect() {
-		return myCustomFunction.apply(number).stream().mapToInt(i -> i).sum() - number == number;
+		return isPerfect.test(myCustomFunction.apply(number).stream().mapToInt(i -> i).sum());
 	}
 
 	public boolean isAbundant() {
