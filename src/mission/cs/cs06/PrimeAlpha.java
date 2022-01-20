@@ -1,41 +1,42 @@
 package mission.cs.cs06;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
+import java.util.function.IntFunction;
 
 public class PrimeAlpha {
-	private int number;
+	private final int number;
 
 	public PrimeAlpha(int number) {
 		this.number = number;
 	}
 
 	public boolean isPrime() {
-		Set primeSet = new HashSet(){ {add(1); add(number);} };
-		return number > 1 && factors().equals(primeSet);
+		if (number < 1) {
+			return false;
+		}
+		return myCustomFunction.apply(number).size() == 2;
 	}
 
-	public boolean isFactor(int potentialFactor) {
-		return number % potentialFactor == 0;
-	}
-
-	public Set factors() {
-		HashSet factors = new HashSet<>();
-		for (int pod=1; pod <= Math.sqrt(number); pod++) {
-			if (isFactor(pod)) {
-				factors.add(pod);
-				factors.add(number / pod);
+	IntFunction<Set<Integer>> myCustomFunction = num -> {
+		Set<Integer> set = new HashSet<>();
+		for (int i = 1; i <= Math.sqrt(num); i++) {
+			if (num % i == 0) {
+				set.add(i);
+				set.add(num / i);
 			}
 		}
-		return factors;
-	}
+		return set;
+	};
 
 	public static void main(String[] args) {
-		PrimeAlpha prime1 = new PrimeAlpha(10);
-		PrimeAlpha prime2 = new PrimeAlpha(7);
 
-		System.out.println(prime1.isPrime());
-		System.out.println(prime2.isPrime());
+		PrimeAlpha prime1;
+
+		for (int i = 1; i < 30; i++) {
+			prime1 = new PrimeAlpha(i);
+			System.out.println(i + " : " + prime1.isPrime());
+		}
+
 	}
 }
