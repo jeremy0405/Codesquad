@@ -10,10 +10,7 @@ public class OS {
 		Process processB = new Process(5);
 		Process processC = new Process(7);
 
-		List<Process> processList = new ArrayList<>();
-		processList.add(processA);
-		processList.add(processB);
-		processList.add(processC);
+		List<Process> processList = new ArrayList<>(List.of(processA, processB, processC));
 
 		Scheduler CPUscheduler = new Scheduler(processList);
 
