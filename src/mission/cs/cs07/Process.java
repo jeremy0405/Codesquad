@@ -19,6 +19,18 @@ public class Process {
 		this.state = "ready";
 	}
 
+	public Process(int totalTime, int threadNumber) {
+		threadList = new ArrayList<>();
+
+		for (int i = 0; i < threadNumber; i++) {
+			threadList.add(new MyThread());
+		}
+
+		this.totalTime = totalTime;
+		this.usedTime = 0;
+		this.state = "ready";
+	}
+
 	public String getState() {
 		return state;
 	}
@@ -31,11 +43,16 @@ public class Process {
 
 		usedTime += threadList.size();
 
-		//todo 멀티 쓰레드일 때 생각해야 함
+		usedTime = isTerminated() ? totalTime : usedTime;
+
 		try {
-			threadList.get(0).start();
+			for (MyThread myThread : threadList) {
+				myThread.start();
+			}
 		} catch (Exception e) {
-			threadList.get(0).resume();
+			for (MyThread myThread : threadList) {
+				myThread.resume();
+			}
 		}
 
 	}

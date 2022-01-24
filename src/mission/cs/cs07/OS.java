@@ -16,6 +16,15 @@ public class OS {
 
 		CPUscheduler.start();
 
+		processA = new Process(3, 1);
+		processB = new Process(5, 2);
+		processC = new Process(7, 3);
+
+		processList = new ArrayList<>(List.of(processA, processB, processC));
+		CPUscheduler = new Scheduler(processList);
+
+		CPUscheduler.start();
+
 	}
 
 }
