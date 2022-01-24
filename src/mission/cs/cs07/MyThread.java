@@ -29,7 +29,7 @@ public class MyThread implements Runnable {
 
 	public void suspend() {
 		suspended = true;
-		thread.interrupt();
+//		thread.interrupt();
 	}
 
 	public void resume() {
@@ -38,7 +38,7 @@ public class MyThread implements Runnable {
 
 	public void stop() {
 		stopped = true;
-		thread.interrupt();
+//		thread.interrupt();
 	}
 
 	public void start() {
