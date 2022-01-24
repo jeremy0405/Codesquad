@@ -8,6 +8,9 @@ public class MyThread extends Thread {
 		while (true) {
 			//todo do nothing
 			i++;
+			if (i % 300000000 == 0) {
+				System.out.println(i);
+			}
 		}
 
 	}

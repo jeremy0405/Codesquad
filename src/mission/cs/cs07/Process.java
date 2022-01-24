@@ -32,7 +32,11 @@ public class Process {
 		usedTime += threadList.size();
 
 		//todo 멀티 쓰레드일 때 생각해야 함
-		threadList.get(0).resume();
+		try {
+			threadList.get(0).start();
+		} catch (Exception e) {
+			threadList.get(0).resume();
+		}
 
 	}
 

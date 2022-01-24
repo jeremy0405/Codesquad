@@ -49,6 +49,8 @@ public class Scheduler {
 
 			if ("waiting".equals(tmp.getState())) {
 				readyQueue.add(tmp);
+			} else {
+				tmp.getThreadList().get(0).stop();
 			}
 
 		}
