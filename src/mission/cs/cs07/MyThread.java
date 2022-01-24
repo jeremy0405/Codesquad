@@ -2,8 +2,8 @@ package mission.cs.cs07;
 
 public class MyThread implements Runnable {
 
-	volatile boolean suspended; //volatile -> '쉽게 바뀌는 변수'선언해야 쓰레드종료
-	volatile boolean stopped;
+	private volatile boolean suspended; //volatile -> '쉽게 바뀌는 변수'선언해야 쓰레드종료
+	private volatile boolean stopped;
 	private final Thread thread;
 
 	public MyThread() {
@@ -18,7 +18,7 @@ public class MyThread implements Runnable {
 		while (!stopped) {
 			if (!suspended) {
 				i++;
-				if (i % 300000000 == 0) {
+				if (i % 400000000 == 0) {
 					System.out.println(i);
 				}
 			} else {

@@ -17,43 +17,36 @@ public class Scheduler {
 	public void start() {
 
 		for (Process process : processList) {
-			process.setState("waiting");
+			process.setWaitingState();
 		}
 
 		while (!readyQueue.isEmpty()) {
-			Process tmp = readyQueue.poll();
-			tmp.setState("running");
-			tmp.start();
+			Process runningProcess = readyQueue.poll();
+			runningProcess.setRunningState();
+			runningProcess.run();
 
-			statePrint();
-
-			if (tmp.isTerminated()) {
-				tmp.setState("terminated");
-			} else {
-				tmp.setState("waiting");
-			}
+			printState();
 
 			try {
 				Thread.sleep(1000);
-				for (MyThread myThread : tmp.getThreadList()) {
-					myThread.suspend();
-				}
+				runningProcess.suspend();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 
-			if ("waiting".equals(tmp.getState())) {
-				readyQueue.add(tmp);
+			if (runningProcess.isTerminated()) {
+				runningProcess.setTerminatedState();
+				runningProcess.stop();
 			} else {
-				for (MyThread myThread : tmp.getThreadList()) {
-					myThread.stop();
-				}
+				runningProcess.setWaitingState();
+				readyQueue.add(runningProcess);
 			}
 		}
-		statePrint();
+		printState();
 	}
 
-	private void statePrint() {
+	private void printState() {
+		System.out.println();
 		Print.print(processList);
 		System.out.println(".");
 	}

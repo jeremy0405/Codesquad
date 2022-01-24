@@ -10,7 +10,6 @@ public class Process {
 	private int usedTime;
 	private String state;
 
-	//todo 멀티쓰레드 프로세스를 만드는 생성자도 추가해야 할듯
 	public Process(int totalTime) {
 		threadList = new ArrayList<>();
 		threadList.add(new MyThread());
@@ -31,18 +30,8 @@ public class Process {
 		this.state = "ready";
 	}
 
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public void start() {
-
+	public void run() {
 		usedTime += threadList.size();
-
 		usedTime = isTerminated() ? totalTime : usedTime;
 
 		try {
@@ -57,12 +46,32 @@ public class Process {
 
 	}
 
+	public void stop() {
+		for (MyThread myThread : threadList) {
+			myThread.stop();
+		}
+	}
+
+	public void suspend() {
+		for (MyThread myThread : threadList) {
+			myThread.suspend();
+		}
+	}
+
 	public boolean isTerminated() {
 		return usedTime >= totalTime;
 	}
 
-	public List<MyThread> getThreadList() {
-		return threadList;
+	public void setWaitingState() {
+		this.state = "waiting";
+	}
+
+	public void setRunningState() {
+		this.state = "running";
+	}
+
+	public void setTerminatedState() {
+		this.state = "terminated";
 	}
 
 	@Override
