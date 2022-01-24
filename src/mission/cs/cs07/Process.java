@@ -6,7 +6,7 @@ import java.util.List;
 public class Process {
 
 	private final List<MyThread> threadList;
-	private int totalTime;
+	private final int totalTime;
 	private int usedTime;
 	private String state;
 
@@ -31,14 +31,17 @@ public class Process {
 
 		usedTime += threadList.size();
 
-		//todo 멀티 쓰레드일 떄 생각해야 함
-		threadList.get(0).run();
+		//todo 멀티 쓰레드일 때 생각해야 함
+		threadList.get(0).resume();
 
 	}
 
-
 	public boolean isTerminated() {
 		return usedTime >= totalTime;
+	}
+
+	public List<MyThread> getThreadList() {
+		return threadList;
 	}
 
 	@Override

@@ -24,14 +24,11 @@ public class Scheduler {
 
 		while (!readyQueue.isEmpty()) {
 			Process tmp = readyQueue.poll();
-
 			tmp.setState("running");
 
 			tmp.start();
 
-			Print.print(processList);
-
-			System.out.println(".");
+			statePrint();
 
 			if (tmp.isTerminated()) {
 				tmp.setState("terminated");
@@ -41,6 +38,11 @@ public class Scheduler {
 
 			try {
 				Thread.sleep(1000);
+				//todo interrupt 걸어야 함
+				// interrupt 걸면 쓰레드 재사용이 불가능해서 suspend로 함.
+				// deprecated 된 건데.. 어떻게할지 고민중
+				tmp.getThreadList().get(0).suspend();
+
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -51,8 +53,13 @@ public class Scheduler {
 
 		}
 
-		Print.print(processList);
+		statePrint();
 
+	}
+
+	private void statePrint() {
+		Print.print(processList);
+		System.out.println(".");
 	}
 
 }

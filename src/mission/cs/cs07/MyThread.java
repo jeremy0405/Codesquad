@@ -1,14 +1,14 @@
 package mission.cs.cs07;
 
-public class MyThread implements Runnable {
+public class MyThread extends Thread {
 
 	@Override
 	public void run() {
 		int i = 0;
-//		while (true) {
-//			//todo do nothing
-//			i++;
-//		}
+		while (true) {
+			//todo do nothing
+			i++;
+		}
 
 	}
 }
