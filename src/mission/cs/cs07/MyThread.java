@@ -2,7 +2,7 @@ package mission.cs.cs07;
 
 public class MyThread implements Runnable {
 
-	private volatile boolean suspended; //volatile -> '쉽게 바뀌는 변수'선언해야 쓰레드종료
+	private volatile boolean suspended;
 	private volatile boolean stopped;
 	private final Thread thread;
 
@@ -29,7 +29,6 @@ public class MyThread implements Runnable {
 
 	public void suspend() {
 		suspended = true;
-//		thread.interrupt();
 	}
 
 	public void resume() {
@@ -38,7 +37,6 @@ public class MyThread implements Runnable {
 
 	public void stop() {
 		stopped = true;
-//		thread.interrupt();
 	}
 
 	public void start() {

@@ -22,8 +22,7 @@ public class Scheduler {
 
 		while (!readyQueue.isEmpty()) {
 			Process runningProcess = readyQueue.poll();
-			runningProcess.setRunningState();
-			runningProcess.run();
+			giveCPUToProcess(runningProcess);
 
 			printState();
 
@@ -35,14 +34,27 @@ public class Scheduler {
 			}
 
 			if (runningProcess.isTerminated()) {
-				runningProcess.setTerminatedState();
-				runningProcess.stop();
+				terminateProcess(runningProcess);
 			} else {
-				runningProcess.setWaitingState();
-				readyQueue.add(runningProcess);
+				takeCPUFromProcess(runningProcess);
 			}
 		}
 		printState();
+	}
+
+	private void giveCPUToProcess(Process runningProcess) {
+		runningProcess.setRunningState();
+		runningProcess.run();
+	}
+
+	private void takeCPUFromProcess(Process runningProcess) {
+		runningProcess.setWaitingState();
+		readyQueue.add(runningProcess);
+	}
+
+	private void terminateProcess(Process runningProcess) {
+		runningProcess.setTerminatedState();
+		runningProcess.stop();
 	}
 
 	private void printState() {
