@@ -49,8 +49,9 @@ public class Barista {
 
 	public void stopWork() {
 		isKeepWork = true;
-		thread.interrupt();
-		executorService.shutdown();
+		executorService.shutdownNow();
+		thread.stop();
+		System.out.println("바리스타 종료");
 	}
 
 

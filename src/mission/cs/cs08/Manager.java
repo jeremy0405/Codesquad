@@ -41,6 +41,7 @@ public class Manager {
 	public void stopWork() {
 		barista.stopWork();
 		executorService.shutdown();
+		System.out.println("매니저 종료");
 	}
 
 }

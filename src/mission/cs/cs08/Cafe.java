@@ -28,6 +28,9 @@ public class Cafe {
 
 		manager.stopWork();
 
+		System.out.println("메인문 종료");
+		System.exit(1);
+
 	}
 
 	private static void sleep(int millis) {
