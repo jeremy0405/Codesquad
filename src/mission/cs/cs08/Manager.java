@@ -31,14 +31,15 @@ public class Manager {
 			while (!coffeeOrders.isEmpty()) {
 				//todo 바리스타한테 넘겨야 함
 				String coffee = coffeeOrders.poll();
-				System.out.println("매니저가 바리스타한테 다음 메뉴 만들라고 넘김 " + coffee);
+//				System.out.println("매니저가 바리스타한테 다음 메뉴 만들라고 넘김 " + coffee);
 				barista.receiveOrder(coffee);
 			}
-			System.out.println("매니저가 바리스타한테 메뉴 만들라고 지시");
+//			System.out.println("매니저가 바리스타한테 메뉴 만들라고 지시");
 		};
 	}
 
 	public void stopWork() {
+		barista.stopWork();
 		executorService.shutdown();
 	}
 

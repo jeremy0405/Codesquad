@@ -2,7 +2,6 @@ package mission.cs.cs08;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -21,42 +20,49 @@ public class Barista {
 
 	private final Queue<String> orderList = new LinkedList<>();
 	private final ExecutorService executorService = Executors.newFixedThreadPool(2);
+	private boolean isKeepWork = false;
+	Thread thread;
 
 	public void receiveOrder(String coffee) {
 		orderList.add(coffee);
 		System.out.println("바리스타가 " + coffee + "주문 접수함");
+		thread = new Thread(this::startWork);
+		thread.start();
 	}
 
 	public void startWork() {
 
 		float f = 10E8F;
 		while (f + 1 == f) {
-
 			if (!orderList.isEmpty()) {
-				//todo 바리스타 일해
-
+				String coffee = orderList.poll();
+				if (coffee == null) {
+					continue;
+				}
+				startMakingCoffee(coffee);
 			}
-
+			if (isKeepWork) {
+				break;
+			}
 		}
-
-
-
 	}
 
-	private CompletableFuture<String> startMakingCofee(String coffee) {
-		return CompletableFuture.supplyAsync(() -> {
-			if (!orderList.isEmpty()) {
-				System.out.println(coffee + " 제조시작");
-				return coffee;
+	public void stopWork() {
+		isKeepWork = true;
+		thread.interrupt();
+		executorService.shutdown();
+	}
+
+
+	private CompletableFuture<Void> startMakingCoffee(String coffee) {
+		return CompletableFuture.runAsync(() -> {
+			System.out.println(Thread.currentThread().getName() + " " + coffee + " 제조시작=======================");
+			try {
+				Thread.sleep(Coffee.getTime(coffee) * 1000L);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
-			return null;
-		}, executorService);
-	}
-
-	private CompletableFuture<String> finishMakingCoffee(String coffee) {
-		return CompletableFuture.supplyAsync(() -> {
-			System.out.println(coffee + " 제조완료");
-			return coffee;
+			System.out.println(Thread.currentThread().getName() + " =======================" + coffee + " 제조완료");
 		}, executorService);
 	}
 
