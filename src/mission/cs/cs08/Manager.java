@@ -14,9 +14,11 @@ public class Manager {
 	// 여기서 CompletableFuture 사용해야 할듯
 
 	private final ScheduledExecutorService executorService;
+	private final Barista barista;
 
 	public Manager() {
 		executorService = Executors.newSingleThreadScheduledExecutor();
+		barista = new Barista();
 	}
 
 	public void startWork() {
@@ -27,7 +29,10 @@ public class Manager {
 		return () -> {
 			Queue<String> coffeeOrders = Cashier.getCoffeeOrders();
 			while (!coffeeOrders.isEmpty()) {
-				System.out.println("매니저가 바리스타한테 다음 메뉴 만들라고 넘김 " + coffeeOrders.poll());
+				//todo 바리스타한테 넘겨야 함
+				String coffee = coffeeOrders.poll();
+				System.out.println("매니저가 바리스타한테 다음 메뉴 만들라고 넘김 " + coffee);
+				barista.receiveOrder(coffee);
 			}
 			System.out.println("매니저가 바리스타한테 메뉴 만들라고 지시");
 		};
