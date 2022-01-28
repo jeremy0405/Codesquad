@@ -22,10 +22,16 @@ public class ModernJava {
 
 		CompletableFuture<Integer> value_1 = new CompletableFuture<>();
 		CompletableFuture<Integer> value_2 = new CompletableFuture<>();
-		CompletableFuture<Integer> value_3 = value_1.thenCombine(value_2, Integer::sum);
+		CompletableFuture<Integer> value_3 = value_1.thenCombine(value_2, (a, b) -> a + 10 * b);
 
-		executorService.submit(() -> value_1.complete(work_1()));
-		executorService.submit(() -> value_2.complete(work_2()));
+		executorService.submit(() -> {
+			System.out.println(Thread.currentThread().getName());
+			return value_1.complete(work_1());
+		});
+		executorService.submit(() -> {
+			System.out.println(Thread.currentThread().getName());
+			return value_2.complete(work_2());
+		});
 		executorService.submit(() -> {
 			try {
 				System.out.println("sum = " + (value_3.get()));

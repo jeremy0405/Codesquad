@@ -24,7 +24,7 @@ public class Cafe {
 
 		customer.order("아메리카노", 3);
 
-		sleep(20000);
+		sleep(25000);
 
 		manager.stopWork();
 
