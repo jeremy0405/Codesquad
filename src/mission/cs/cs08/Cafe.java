@@ -12,15 +12,15 @@ public class Cafe {
 
 		customer.order("아메리카노");
 
-		sleep(1000);
+//		sleep(1000);
 
 		customer.order("카페라떼", 3);
 
-		sleep(1000);
+//		sleep(1000);
 
 		customer.order("프라프치노");
 
-		sleep(1000);
+//		sleep(1000);
 
 		customer.order("아메리카노", 3);
 
