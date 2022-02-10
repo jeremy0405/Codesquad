@@ -12,7 +12,7 @@ public class InetAddressApp {
 		System.out.println(byName.getHostName());
 
 //		ServerSocket server = new ServerSocket(Integer.parseInt(byName.getHostAddress()), 80);
-		Socket socket = new Socket(byName.getHostAddress(), 80);
+		Socket socket = new Socket(byName.getHostAddress(), 443);
 
 		System.out.println(socket);
 
