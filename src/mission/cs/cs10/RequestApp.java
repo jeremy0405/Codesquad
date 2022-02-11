@@ -9,7 +9,6 @@ import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.SocketException;
-import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -26,6 +25,7 @@ public class RequestApp {
 		URL dns = getURL(url);
 		connectTCP(dns);
 		request(dns);
+		getResponse();
 
 	}
 
@@ -39,15 +39,10 @@ public class RequestApp {
 
 		BufferedWriter out = new BufferedWriter(
 			new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8));
-		BufferedReader in = new BufferedReader(
-			new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
 
 		List<String> headers = new ArrayList<>();
 
 		headers.add("GET" + getQuery(dns) + "HTTP/1.1");
-//		headers.add("Host: " + dns.getHost());
-//		headers.add("Accept-Language: en-US,en;q=0.9");
-//		headers.add("Accept-Encoding: gzip, deflate, br");
 
 		System.out.println("\n=======Request=======");
 
@@ -60,6 +55,13 @@ public class RequestApp {
 
 		out.flush();
 		System.out.println("\n=======Response=======");
+
+	}
+
+
+	private void getResponse() throws IOException {
+		BufferedReader in = new BufferedReader(
+			new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
 
 		String line;
 		while ((line = in.readLine()) != null) {
@@ -102,6 +104,5 @@ public class RequestApp {
 	private boolean isNotStartWithHttp(String stringURL) {
 		return !stringURL.startsWith("http://") && !stringURL.startsWith("https://");
 	}
-
 
 }
