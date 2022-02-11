@@ -10,6 +10,7 @@ import java.net.MalformedURLException;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,6 @@ import java.util.Objects;
 public class RequestApp {
 
 	private Socket socket;
-	private InetAddress byName;
 
 	public RequestApp(String url) throws IOException {
 
@@ -78,10 +78,14 @@ public class RequestApp {
 	}
 
 	private void connectTCP(URL url) throws IOException {
-		byName = InetAddress.getByName(url.getHost());
-		System.out.println("(DNS Lookup...)");
+		InetAddress byName = getAddressFromDNS(url);
 		socket = new Socket(getHostAddress(byName), getPort(url));
 		System.out.println("TCP Connection : " + getHostAddress(byName) + " " + getPort(url));
+	}
+
+	private InetAddress getAddressFromDNS(URL url) throws UnknownHostException {
+		System.out.println("(DNS Lookup...)");
+		return InetAddress.getByName(url.getHost());
 	}
 
 	private int getPort(URL url) {
