@@ -8,6 +8,8 @@ import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.Socket;
+import java.net.SocketException;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -19,21 +21,21 @@ public class RequestApp {
 	private Socket socket;
 	private InetAddress byName;
 
-	public RequestApp(String url) {
+	public RequestApp(String url) throws IOException {
 
-		try {
-			URL dns = getURL(url);
-			connectTCP(dns);
-			request(dns);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		URL dns = getURL(url);
+		connectTCP(dns);
+		request(dns);
 
 	}
 
 	private void request(URL dns) throws IOException {
 
-		socket.setSoTimeout(3000);
+		try {
+			socket.setSoTimeout(3000);
+		} catch (SocketException e) {
+
+		}
 
 		BufferedWriter out = new BufferedWriter(
 			new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8));
@@ -68,7 +70,7 @@ public class RequestApp {
 
 	private String getQuery(URL dns) {
 		if (Objects.isNull(dns.getQuery())) {
-			return " ";
+			return " / ";
 		}
 		return " " + dns.getPath() + "?" + dns.getQuery() + " ";
 	}

@@ -10,7 +10,7 @@ public class Client {
 
 	public static void main(String[] args) throws IOException {
 		Socket socket = new Socket("google.co.kr", 80);
-		socket.setSoTimeout(15000);
+		socket.setSoTimeout(3000);
 
 		//https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=%EB%8F%99%EA%B8%B0
 
@@ -23,7 +23,7 @@ public class Client {
 
 		List<String> contents = new ArrayList<>();
 		contents.add(
-			"GET /search?q=codesquad&client=safari&sxsrf=APq-WBtPYIRyqRgh7exxwCLCK0obx4btKQ%3A1644494345398&source=hp&ei=Cf4EYo2hFNuAoATprKHoDA&iflsig=AHkkrS4AAAAAYgUMGeb4HIwv4T70TicHqDmGuLsXNB7u&ved=0ahUKEwjNyafqivX1AhVbAIgKHWlWCM0Q4dUDCA4&uact=5&oq=codesquad&gs_lcp=Cgdnd3Mtd2l6EAMyCwguEIAEEMcBEK8BMgUIABDLATIECAAQHjIECAAQHjIECAAQHjIECAAQHjIGCAAQBRAeMgYIABAFEB46BAgjECc6DgguEIAEELEDEMcBEKMCOg4ILhCABBCxAxDHARDRAzoLCAAQgAQQsQMQgwE6BQgAEIAEOhEILhCABBCxAxCDARDHARCjAjoICAAQgAQQsQM6CwguEIAEELEDENQCOggILhCABBCxAzoOCC4QgAQQsQMQxwEQrwE6DgguEIAEELEDEIMBENQCOgsILhDHARCvARDLAToHCAAQChDLAToKCC4Q1AIQChDLAVAAWKUTYLQUaABwAHgAgAGKAYgBswiSAQMwLjmYAQCgAQE&sclient=gws-wiz HTTP/1.1");
+			"GET / HTTP/1.1");
 
 		for (String content : contents) {
 			System.out.println(content);
